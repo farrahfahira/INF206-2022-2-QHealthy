@@ -1,1 +1,0 @@
-untuk mengambil data di databse
