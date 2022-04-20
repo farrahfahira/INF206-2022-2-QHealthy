@@ -1,1 +1,0 @@
-untuk mengontrol view dan model
