@@ -44,7 +44,7 @@
               </div>
               <p class="text">QHealthy memberikan rekam medis dan hasil periksa laboratorium secara praktis dan lengkap</p>
               <div class="cta">
-                <a href="#" class="btn">Get started</a>
+                <a href="<?= BASEURL; ?>/dokter/login" class="btn">Get started</a>
               </div>
             </div>
 
