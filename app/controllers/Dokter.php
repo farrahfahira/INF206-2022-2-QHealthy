@@ -15,7 +15,7 @@ class Dokter extends Controller
     public function masuk()
     {
         if ($this->model('Dokter_model')->cekEmail($_POST) > 0) {
-            if ($this->model('Dokter_model')->cekPassword($_POST) >= 0) { //gak dibuat > 0 dulu karena masih error
+            if ($this->model('Dokter_model')->cekPassword($_POST) >= 0) { // gak dibuat > 0  dlu karena masih human error
                 header('Location: ' . BASEURL . '/home');
                 exit;
             }
