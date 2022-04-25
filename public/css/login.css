@@ -1,8 +1,9 @@
 body {
-  background-image:url(../assets/bg2.png);
+  background-image:url(../assets/bg.jpg);
   background-position: top right;
   background-repeat: no-repeat;
-  background-size: 80vmax;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .card-login {
@@ -48,3 +49,14 @@ body {
   opacity: 0.1;
 }
 
+#eye {
+  position: relative;
+  transform: translate(0, -50%);
+  top: -30px;
+  left: 140px;
+  cursor: pointer;
+}
+
+.fa {
+  color: #71797e;
+}

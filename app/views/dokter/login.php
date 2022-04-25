@@ -1,6 +1,6 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/login.css?v=<?php echo time(); ?>">
-
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />">
     <title>Login | QHealthy</title>
     </head>
 
@@ -21,7 +21,10 @@
                 <input type="email" class="form-control style-form" name="email" placeholder="Email" required />
               </div>
               <div class="mb-5">
-                <input type="password" class="form-control style-form" name="password" placeholder="Password" required />
+                <input type="password" class="form-control style-form" id="password" placeholder="password" required />
+                  <span>
+                    <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+                  </span>
               </div>
               <button type="submit" class="btn shadow-sm border-3 py-1 px-4 mb-5 fw-bold text-white">Login</button>
             </form>
@@ -32,6 +35,20 @@
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
       <script src="<?= BASEURL; ?>/js/pop-up.js"></script>
+      <script>
+        var state = false;
+          function toggle() {
+            if (state) {
+              document.getElementById("password").setAttribute("type","password");
+              document.getElementById("eye").style.color ='#71797e';
+              state = false;
+            }
+           else{
+             document.getElementById("password").setAttribute("type","text");
+             document.getElementById("eye").style.color = '#64BCF4';
+             state = true;
+            }
+          }
+      </script>
     </body>
-
     </html>
