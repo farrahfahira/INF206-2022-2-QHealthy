@@ -1,12 +1,11 @@
 <?php
 require '../config.php';
-if(!empty($_SESSION["id"])){
-  $id = $_SESSION["id"];
-  $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
-  $row = mysqli_fetch_assoc($result);
-}
-else{
-  header("Location: ../login.php");
+if (!empty($_SESSION["id"])) {
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+} else {
+    header("Location: ../login.php");
 }
 ?>
 
@@ -67,7 +66,7 @@ else{
                     </a>
                 </li>
                 <li class="tooltip-element" data-tooltip="1">
-                    <a href="#" data-active="1">
+                    <a href="../rekammedis/rm.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
@@ -115,7 +114,7 @@ else{
         <div class="container">
             <button type="button" class="btn button">
                 <a href="add.php" class="icon">
-                    <i class="bx bx-notepad btn-name">Add-Data</i>
+                    <i class="bx bx-notepad btn-name">Add Data</i>
                     <i class="bx bxs-notepad"></i>
                 </a>
             </button>
