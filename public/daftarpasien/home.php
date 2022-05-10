@@ -114,7 +114,7 @@ if (!empty($_SESSION["id"])) {
         <div class="container">
             <button type="button" class="btn button">
                 <a href="add.php" class="icon">
-                    <i class="bx bx-notepad btn-name">Add Data</i>
+                    <i class="bx bx-notepad btn-name"> Add Data</i>
                     <i class="bx bxs-notepad"></i>
                 </a>
             </button>
