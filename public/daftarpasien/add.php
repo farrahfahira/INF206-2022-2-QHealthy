@@ -98,8 +98,8 @@ if(isset($_POST["submit"])){
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
-                        <h3>John Doe</h3>
-                        <h5>Admin</h5>
+                        <h3>Admin</h3>
+                        <h5>Fulan</h5>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">
