@@ -32,14 +32,10 @@ else{
 
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
 
-    <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.semanticui.min.css">
 
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/home.css" />
 
 </head>
 
@@ -95,8 +91,8 @@ else{
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
-                        <h3>John Doe</h3>
-                        <h5>Admin</h5>
+                        <h3>Admin</h3>
+                        <h5>Fulan</h5>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">
@@ -104,7 +100,7 @@ else{
                 </a>
             </div>
             <div class="tooltip">
-                <span class="show">John Doe</span>
+                <span class="show">Fulan</span>
                 <span>Logout</span>
             </div>
         </div>
@@ -112,12 +108,14 @@ else{
 
     <main>
         <h1>Daftar Pasien</h1>
+        </br>
+        <hr>
 
 
         <div class="container">
-            <button type="button" class="btn btn-success">
+            <button type="button" class="btn button">
                 <a href="add.php" class="icon">
-                    <i class="bx bx-notepad">Add</i>
+                    <i class="bx bx-notepad btn-name">Add-Data</i>
                     <i class="bx bxs-notepad"></i>
                 </a>
             </button>
