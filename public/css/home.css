@@ -401,9 +401,9 @@ body.shrink .tooltip {
 }
 
 .button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border-radius: 12px;
-  border-color: #4CAF50;
+  border-color: #4caf50;
   color: white;
   padding: 10px 7px;
   text-align: center;
@@ -416,13 +416,17 @@ body.shrink .tooltip {
 }
 
 .button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border-radius: 12px;
-  border-color: #4CAF50;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  border-color: #4caf50;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
   color: white;
   padding: 10px 7px;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
+}
+
+hr {
+  margin-bottom: 20px;
 }
