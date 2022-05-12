@@ -109,12 +109,13 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
-        <div class="data_pasien">
+        <div class="data_pasien" style='margin-bottom: 20px'>
             <?php
 
             $id = $_GET['id'];
             $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
             while ($row = mysqli_fetch_array($daftar_pasien)) {
+                $no_rm = $row['No_RM'];
                 $nama = $row['Nama'];
                 $usia = $row['Usia'];
                 $jk = $row['Jenis Kelamin'];
@@ -126,6 +127,8 @@ if (!empty($_SESSION["id"])) {
                 $no_telp = $row['No Telp'];
             }
 
+            echo "No RM : " . $no_rm;
+            echo "<br />";
             echo "Nama : " . $nama;
             echo "<br />";
             echo "Usia : " . $usia;
