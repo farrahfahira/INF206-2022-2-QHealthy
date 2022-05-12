@@ -112,28 +112,37 @@ if (!empty($_SESSION["id"])) {
         <div class="data_pasien">
             <?php
 
-            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien");
-            while ($data = mysqli_fetch_array($daftar_pasien)) {
-                echo "No RM : " . $data['No RM'];
-                echo "<br />";
-                echo "Nama : " . $data['Nama'];
-                echo "<br />";
-                echo "Usia : " . $data['Usia'];
-                echo "<br />";
-                echo "Jenis Kelamin : " . $data['Jenis Kelamin'];
-                echo "<br />";
-                echo "Gol. Darah : " . $data['Gol Darah'];
-                echo "<br />";
-                echo "TB / BB : " . $data['TB'];
-                echo " cm / " . $data['BB'];
-                echo " kg";
-                echo "<br />";
-                echo "Pekerjaan : " . $data['Pekerjaan'];
-                echo "<br />";
-                echo "Alamat : " . $data['Alamat'];
-                echo "<br />";
-                echo "No. Telp : " . $data['No Telp'];
+            $id = $_GET['id'];
+            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                $nama = $row['Nama'];
+                $usia = $row['Usia'];
+                $jk = $row['Jenis Kelamin'];
+                $goldar = $row['Gol Darah'];
+                $tb = $row['TB'];
+                $bb = $row['BB'];
+                $pekerjaan = $row['Pekerjaan'];
+                $alamat = $row['Alamat'];
+                $no_telp = $row['No Telp'];
             }
+
+            echo "Nama : " . $nama;
+            echo "<br />";
+            echo "Usia : " . $usia;
+            echo "<br />";
+            echo "Jenis Kelamin : " . $jk;
+            echo "<br />";
+            echo "Gol. Darah : " . $goldar;
+            echo "<br />";
+            echo "TB / BB : " . $tb;
+            echo " cm / " . $bb;
+            echo " kg";
+            echo "<br />";
+            echo "Pekerjaan : " . $pekerjaan;
+            echo "<br />";
+            echo "Alamat : " . $alamat;
+            echo "<br />";
+            echo "No. Telp : " . $no_telp;
 
             ?>
         </div>

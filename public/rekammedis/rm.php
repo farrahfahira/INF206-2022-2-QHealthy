@@ -127,7 +127,7 @@ if (!empty($_SESSION["id"])) {
                     echo
                     "<tr>
                     <td>" . $no++ . "</td>
-                    <td> <a href='rm_rujukan.php?id=" . $row['No RM'] . "'>" . $row['No RM'] . "</td>
+                    <td> <a href='rm_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
                     <td>" . $row['Nama'] . "</td>
                     <td>" . $row['Usia'] . "</td>
                     <td>" . $row['Jenis Kelamin'] . "</td>"; ?>
