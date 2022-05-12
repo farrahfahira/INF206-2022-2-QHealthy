@@ -161,8 +161,9 @@ if (!empty($_SESSION["id"])) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $rekam_medis = mysqli_query($conn, "select * from rekam_medis");
+                <?php 
+                 $id = $_GET['id'];
+                $rekam_medis = mysqli_query($conn, "SELECT * from rekam_medis where No_RM='$id'");
                 while ($row = mysqli_fetch_array($rekam_medis)) :
                     echo
                     "<tr>
