@@ -109,67 +109,54 @@ if (!empty($_SESSION["id"])) {
         <h1>Daftar Pasien</h1>
         </br>
         <hr>
+        <div class="data_pasien">
+            <?php
 
+            $id = $_GET['id'];
+            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                $no_rm = $row['No_RM'];
+                $nama = $row['Nama'];
+                $usia = $row['Usia'];
+                $jk = $row['Jenis Kelamin'];
+                $goldar = $row['Gol Darah'];
+                $tb = $row['TB'];
+                $bb = $row['BB'];
+                $pekerjaan = $row['Pekerjaan'];
+                $alamat = $row['Alamat'];
+                $no_telp = $row['No Telp'];
+            }
 
-        <div class="container">
-            <button type="button" class="btn button">
-                <a href="add.php" class="icon">
-                    <i class="bx bx-notepad btn-name"> Add Data</i>
-                    <i class="bx bxs-notepad"></i>
-                </a>
-            </button>
+            echo "No RM : " . $no_rm;
+            echo "<br />";
+            echo "Nama : " . $nama;
+            echo "<br />";
+            echo "Usia : " . $usia;
+            echo "<br />";
+            echo "Jenis Kelamin : " . $jk;
+            echo "<br />";
+            echo "Gol. Darah : " . $goldar;
+            echo "<br />";
+            echo "TB / BB : " . $tb;
+            echo " cm / " . $bb;
+            echo " kg";
+            echo "<br />";
+            echo "Pekerjaan : " . $pekerjaan;
+            echo "<br />";
+            echo "Alamat : " . $alamat;
+            echo "<br />";
+            echo "No. Telp : " . $no_telp;
+
+            ?>
         </div>
 
 
-        <table id="tabel_daftar_pasien" class="ui celled table" style="width:100%">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>No. RM</th>
-                    <th>Nama</th>
-                    <th>Usia</th>
-                    <th>Jenis Kelamin</th>
-                    <th style="width:120px;">Action</p>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $daftar_pasien = mysqli_query($conn, "select * from dftr_pasien order by no desc");
-                while ($row = mysqli_fetch_array($daftar_pasien)) :
-                    echo
-                    "<tr>
-                    <td>" . $no++ . "</td>
-                    <td><a href='daftar_pasien_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
-                    <td>" . $row['Nama'] . "</td>
-                    <td>" . $row['Usia'] . "</td>
-                    <td>" . $row['Jenis Kelamin'] . "</td>"; ?>
-                    <td style="text-align: center;">
-                        <button type="button" class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-                            </svg>
-                        </button>
-                    </td>
-                    </tr>
-                <?php endwhile; ?>
+        
 
 
-            </tbody>
-        </table>
+        
 
-        <script>
-            $(document).ready(function() {
-                $('#tabel_daftar_pasien').DataTable();
-            });
-        </script>
+        
     </main>
 
     <script src="../js/sidebar.js"></script>
