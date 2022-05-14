@@ -109,6 +109,64 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis - Input</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form>
+
+                            <div class="mb-3">
+                                <label for="" class="tanggal-rawat">Tanggal Rawat</label>
+                                <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Poliklinik</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Umum</option>
+                                    <option value="1">Anak</option>
+                                    <option value="2">Demam</option>
+                                    <option value="3">Penyakit Dalam</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Nama Dokter</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Periksa</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Diagnosis</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Tindakan</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Obat</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Clear</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="card text">
             <div class=" card-header">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -121,9 +179,14 @@ if (!empty($_SESSION["id"])) {
                 </ul>
             </div>
             <div class="card-body">
+
                 <div class="tab-content" id="myTabContent">
+
+
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                        <div class=" data_pasien" style='margin-bottom: 20px; margin-left: 15px;'>
+
+                        <div class="data_pasien" style='margin-bottom: 20px; margin-left: 15px;'>
+
                             <?php
 
                             $id = $_GET['id'];
@@ -140,6 +203,8 @@ if (!empty($_SESSION["id"])) {
                                 $alamat = $row['Alamat'];
                                 $no_telp = $row['No Telp'];
                             }
+
+
 
                             echo "No RM : " . $no_rm;
                             echo "<br />";
@@ -162,6 +227,12 @@ if (!empty($_SESSION["id"])) {
                             echo "No. Telp : " . $no_telp;
 
                             ?>
+                        </div>
+
+                        <div class="container">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Add Data
+                            </button>
                         </div>
 
                         <div class="container" style="margin-left: 10px;">
