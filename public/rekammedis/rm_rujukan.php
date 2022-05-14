@@ -22,7 +22,6 @@ if (!empty($_SESSION["id"])) {
     <!-- Javascript library files -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.semanticui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
 
@@ -30,6 +29,7 @@ if (!empty($_SESSION["id"])) {
     <!--  CSS files -->
 
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.semanticui.min.css">
@@ -109,109 +109,126 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
-        <div class="data_pasien" style='margin-bottom: 20px'>
-            <?php
+        <div class="card text">
+            <div class=" card-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Hasil Pemeriksaan" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Hasil Pemeriksaan</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Hasil Laboratorium" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Hasil Laboratorium</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                        <div class=" data_pasien" style='margin-bottom: 20px; margin-left: 15px;'>
+                            <?php
 
-            $id = $_GET['id'];
-            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
-            while ($row = mysqli_fetch_array($daftar_pasien)) {
-                $no_rm = $row['No_RM'];
-                $nama = $row['Nama'];
-                $usia = $row['Usia'];
-                $jk = $row['Jenis Kelamin'];
-                $goldar = $row['Gol Darah'];
-                $tb = $row['TB'];
-                $bb = $row['BB'];
-                $pekerjaan = $row['Pekerjaan'];
-                $alamat = $row['Alamat'];
-                $no_telp = $row['No Telp'];
-            }
+                            $id = $_GET['id'];
+                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                                $no_rm = $row['No_RM'];
+                                $nama = $row['Nama'];
+                                $usia = $row['Usia'];
+                                $jk = $row['Jenis Kelamin'];
+                                $goldar = $row['Gol Darah'];
+                                $tb = $row['TB'];
+                                $bb = $row['BB'];
+                                $pekerjaan = $row['Pekerjaan'];
+                                $alamat = $row['Alamat'];
+                                $no_telp = $row['No Telp'];
+                            }
 
-            echo "No RM : " . $no_rm;
-            echo "<br />";
-            echo "Nama : " . $nama;
-            echo "<br />";
-            echo "Usia : " . $usia;
-            echo "<br />";
-            echo "Jenis Kelamin : " . $jk;
-            echo "<br />";
-            echo "Gol. Darah : " . $goldar;
-            echo "<br />";
-            echo "TB / BB : " . $tb;
-            echo " cm / " . $bb;
-            echo " kg";
-            echo "<br />";
-            echo "Pekerjaan : " . $pekerjaan;
-            echo "<br />";
-            echo "Alamat : " . $alamat;
-            echo "<br />";
-            echo "No. Telp : " . $no_telp;
+                            echo "No RM : " . $no_rm;
+                            echo "<br />";
+                            echo "Nama : " . $nama;
+                            echo "<br />";
+                            echo "Usia : " . $usia;
+                            echo "<br />";
+                            echo "Jenis Kelamin : " . $jk;
+                            echo "<br />";
+                            echo "Gol. Darah : " . $goldar;
+                            echo "<br />";
+                            echo "TB / BB : " . $tb;
+                            echo " cm / " . $bb;
+                            echo " kg";
+                            echo "<br />";
+                            echo "Pekerjaan : " . $pekerjaan;
+                            echo "<br />";
+                            echo "Alamat : " . $alamat;
+                            echo "<br />";
+                            echo "No. Telp : " . $no_telp;
 
-            ?>
+                            ?>
+                        </div>
+
+                        <div class="container" style="margin-left: 10px;">
+                            <table id="tabel_pemeriksaan" class="ui celled table" style="width:100%; text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>Tgl Rawat</th>
+                                        <th>Nama Dokter</th>
+                                        <th>Periksa</th>
+                                        <th>Diagnosis</th>
+                                        <th>Tindakan</th>
+                                        <th>Obat</th>
+                                        <th>Poliklinik</th>
+                                        <th style="width:120px;">Action</p>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $id = $_GET['id'];
+                                    $rekam_medis = mysqli_query($conn, "SELECT * from rekam_medis where No_RM='$id'");
+                                    while ($row = mysqli_fetch_array($rekam_medis)) :
+                                        echo
+                                        "<tr>
+                                    <td>" . $row['Tgl Rawat'] . "</td>
+                                    <td>" . $row['Nama Dokter'] . "</td>
+                                    <td>" . $row['Periksa'] . "</td>
+                                    <td>" . $row['Diagnosis'] . "</td>
+                                    <td>" . $row['Tindakan'] . "</td>
+                                    <td>" . $row['Obat'] . "</td>
+                                    <td>" . $row['Poliklinik'] . "</td>"; ?>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-secondary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                                </svg>
+                                            </button>
+                                            <button type="button" class="btn btn-secondary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+
+                                </tbody>
+                            </table>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $('#tabel_pemeriksaan').DataTable();
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perferendis officia voluptates modi, ipsum ullam ratione eligendi. Optio tenetur, dolore nesciunt laborum quae eum. Dolorum veritatis quasi vero voluptatum. Ea.</div>
+                </div>
+            </div>
         </div>
-
-        <table id="tabel_pemeriksaan" class="ui celled table" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Tgl Rawat</th>
-                    <th>Nama Dokter</th>
-                    <th>Periksa</th>
-                    <th>Diagnosis</th>
-                    <th>Tindakan</th>
-                    <th>Obat</th>
-                    <th>Poliklinik</th>
-                    <th style="width:120px;">Action</p>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                 $id = $_GET['id'];
-                $rekam_medis = mysqli_query($conn, "SELECT * from rekam_medis where No_RM='$id'");
-                while ($row = mysqli_fetch_array($rekam_medis)) :
-                    echo
-                    "<tr>
-                    <td>" . $row['Tgl Rawat'] . "</td>
-                    <td>" . $row['Nama Dokter'] . "</td>
-                    <td>" . $row['Periksa'] . "</td>
-                    <td>" . $row['Diagnosis'] . "</td>
-                    <td>" . $row['Tindakan'] . "</td>
-                    <td>" . $row['Obat'] . "</td>
-                    <td>" . $row['Poliklinik'] . "</td>"; ?>
-                    <td style="text-align: center;">
-                        <button type="button" class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-                            </svg>
-                        </button>
-                    </td>
-                    </tr>
-                <?php endwhile; ?>
-
-            </tbody>
-        </table>
-
-        <script>
-            $(document).ready(function() {
-                $('#tabel_pemeriksaan').DataTable();
-            });
-        </script>
-
-
-
-
 
     </main>
 
     <script src="../js/sidebar.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 </body>
 
