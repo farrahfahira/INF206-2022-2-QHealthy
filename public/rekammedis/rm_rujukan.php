@@ -120,48 +120,46 @@ if (!empty($_SESSION["id"])) {
 
                     <div class="modal-body">
 
-                        <form>
+                        <form action="../rekammedis/insert_data_rm.php" method="POST">
 
                             <div class="mb-3">
-                                <label for="" class="tanggal-rawat">Tanggal Rawat</label>
-                                <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Poliklinik</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <label>Poliklinik</label>
+                                <select class="form-select" name="Poliklinik">
                                     <option selected>Umum</option>
-                                    <option value="1">Anak</option>
-                                    <option value="2">Demam</option>
-                                    <option value="3">Penyakit Dalam</option>
+                                    <option value="Anak">Anak</option>
+                                    <option value="Demam">Demam</option>
+                                    <option value="Penyakit Dalam">Penyakit Dalam</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Nama Dokter</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1">
+                                <label>Nama Dokter</label>
+                                <input type="text" class="form-control" name="Nama_Dokter">
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Periksa</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label>Periksa</label>
+                                <textarea class="form-control" name="Periksa" rows="3"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Diagnosis</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label>Diagnosis</label>
+                                <textarea class="form-control" name="Diagnosis" rows="3"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Tindakan</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label>Tindakan</label>
+                                <textarea class="form-control" name="Tindakan" rows="3"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Obat</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label>Obat</label>
+                                <textarea class="form-control" name="Obat" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-danger">Clear</button>
+                            <button type="reset" class="btn btn-danger">Clear</button>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Save</button>
-                    </div>
+
 
                 </div>
             </div>
@@ -240,12 +238,12 @@ if (!empty($_SESSION["id"])) {
                                 <thead>
                                     <tr>
                                         <th>Tgl Rawat</th>
+                                        <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
                                         <th>Diagnosis</th>
                                         <th>Tindakan</th>
                                         <th>Obat</th>
-                                        <th>Poliklinik</th>
                                         <th style="width:120px;">Action</p>
                                     </tr>
                                 </thead>
@@ -257,12 +255,12 @@ if (!empty($_SESSION["id"])) {
                                         echo
                                         "<tr>
                                     <td>" . $row['Tgl Rawat'] . "</td>
-                                    <td>" . $row['Nama Dokter'] . "</td>
+                                    <td>" . $row['Poliklinik'] . "</td>
+                                    <td>" . $row['Nama_Dokter'] . "</td>
                                     <td>" . $row['Periksa'] . "</td>
                                     <td>" . $row['Diagnosis'] . "</td>
                                     <td>" . $row['Tindakan'] . "</td>
-                                    <td>" . $row['Obat'] . "</td>
-                                    <td>" . $row['Poliklinik'] . "</td>"; ?>
+                                    <td>" . $row['Obat'] . "</td>"; ?>
                                         <td style="text-align: center;">
                                             <button type="button" class="btn btn-secondary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
