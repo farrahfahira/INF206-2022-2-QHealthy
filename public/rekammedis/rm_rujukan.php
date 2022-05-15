@@ -123,6 +123,10 @@ if (!empty($_SESSION["id"])) {
                         <form action="../rekammedis/insert_data_rm.php" method="POST">
 
                             <div class="mb-3">
+                                <label for="" class="tanggal-rawat">Tanggal Rawat</label>
+                                <input type="date" class="form-control" name="Tgl_Rawat">
+                            </div>
+                            <div class="mb-3">
                                 <label>Poliklinik</label>
                                 <select class="form-select" name="Poliklinik">
                                     <option selected>Umum</option>
@@ -237,7 +241,7 @@ if (!empty($_SESSION["id"])) {
                             <table id="tabel_pemeriksaan" class="ui celled table" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>Tgl Rawat</th>
+                                        <th>Tgl_Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
@@ -254,7 +258,7 @@ if (!empty($_SESSION["id"])) {
                                     while ($row = mysqli_fetch_array($rekam_medis)) :
                                         echo
                                         "<tr>
-                                    <td>" . $row['Tgl Rawat'] . "</td>
+                                    <td>" . $row['Tgl_Rawat'] . "</td>
                                     <td>" . $row['Poliklinik'] . "</td>
                                     <td>" . $row['Nama_Dokter'] . "</td>
                                     <td>" . $row['Periksa'] . "</td>
