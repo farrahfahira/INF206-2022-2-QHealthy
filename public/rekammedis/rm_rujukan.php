@@ -186,17 +186,11 @@ if (!empty($_SESSION["id"])) {
                             <?php
 
                             $id = $_GET['id'];
-                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
                             while ($row = mysqli_fetch_array($daftar_pasien)) {
-                                $no_rm = $row['No_RM'];
+                                $id_rm = $row['id_rm'];
+                                $_SESSION['ic_rm'] = $id_rm;
                             }
-
-                            echo '<div class="mb-3">';
-                            echo "<label>No Rekam Medis</label>";
-                            echo '<select class="form-select" name="Nomor_RM">';
-                            echo '<option value="  ' . $no_rm . ' ">' . $no_rm . '</option>';
-                            echo "</select>";
-                            echo "</div>";
 
                             ?>
                             <div class="mb-3">

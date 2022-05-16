@@ -3,6 +3,7 @@
 
 require '../config.php';
 
+$_SESSION['id_rm'];
 
 if (isset($_POST['updatedata'])) {
     $id = $_POST['update_id'];
@@ -16,7 +17,7 @@ if (isset($_POST['updatedata'])) {
     $tindakan = $_POST['Tindakan'];
     $obat = $_POST['Obat'];
 
-    $query = "UPDATE rekam_medis SET Tgl_Rawat='$newDate', Poliklinik='$poliklinik', Nama_Dokter='$nama_dokter', Periksa='$periksa', Diagnosis='$diagnosis', Tindakan='$tindakan', Obat='$obat' WHERE id_rm='$id'  ";
+    $query = "UPDATE rekam_medis SET Tgl_Rawat='$newDate', Poliklinik='$poliklinik', Nama_Dokter='$nama_dokter', Periksa='$periksa', Diagnosis='$diagnosis', Tindakan='$tindakan', Obat='$obat' WHERE id_rm='" . $_SESSION['id_rm'] . "'  ";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {

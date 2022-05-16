@@ -6,7 +6,6 @@ require '../config.php';
 $_SESSION['no_rm'];
 
 if (isset($_POST['submit'])) {
-    $nomor_rm = $_POST['Nomor_RM'];
     $tgl_rawat = $_POST['Tgl_Rawat'];
     $newDate = date("Y-m-d", strtotime($tgl_rawat));
     $poliklinik = $_POST['Poliklinik'];
