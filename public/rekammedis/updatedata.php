@@ -1,13 +1,10 @@
 <?php
 
-
 require '../config.php';
 
 $_SESSION['id_rm'];
 
 if (isset($_POST['updatedata'])) {
-    $id = $_POST['update_id'];
-
     $tgl_rawat = $_POST['Tgl_Rawat'];
     $newDate = date("Y-m-d", strtotime($tgl_rawat));
     $poliklinik = $_POST['Poliklinik'];
