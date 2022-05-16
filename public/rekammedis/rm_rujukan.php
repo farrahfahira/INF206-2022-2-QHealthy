@@ -18,8 +18,7 @@ if (!empty($_SESSION["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QHealthy | Home</title>
 
-
-    <!-- Javascript library files -->
+    <!-- Data Tables -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.semanticui.min.js"></script>
@@ -109,12 +108,12 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
-        <!-- Modal -->
+        <!-- Modal Pop Up Insert Data -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis - Input</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Pemeriksaan) - Input</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -122,22 +121,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/insert_data_rm.php" method="POST">
 
-                            <?php
 
-                            $id = $_GET['id'];
-                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
-                            while ($row = mysqli_fetch_array($daftar_pasien)) {
-                                $no_rm = $row['No_RM'];
-                            }
-
-                            echo '<div class="mb-3">';
-                            echo "<label>No Rekam Medis</label>";
-                            echo '<select class="form-select" name="Nomor_RM">';
-                            echo '<option value="  ' . $no_rm . ' ">' . $no_rm . '</option>';
-                            echo "</select>";
-                            echo "</div>";
-
-                            ?>
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Rawat</label>
                                 <input type="date" class="form-control" name="Tgl_Rawat">
@@ -179,13 +163,90 @@ if (!empty($_SESSION["id"])) {
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up Insert Data -->
 
+        <!-- Modal Pop Up Edit Data -->
+        <div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Pemeriksaan) - Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
+                    <div class="modal-body">
 
+                        <form action="../rekammedis/updatedata.php" method="POST">
+
+                            <input type="hidden" name="update_id" id="update_id">
+
+                            <?php
+
+                            $id = $_GET['id'];
+                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                                $no_rm = $row['No_RM'];
+                            }
+
+                            echo '<div class="mb-3">';
+                            echo "<label>No Rekam Medis</label>";
+                            echo '<select class="form-select" name="Nomor_RM">';
+                            echo '<option value="  ' . $no_rm . ' ">' . $no_rm . '</option>';
+                            echo "</select>";
+                            echo "</div>";
+
+                            ?>
+                            <div class="mb-3">
+                                <label for="" class="tanggal-rawat">Tanggal Rawat</label>
+                                <input type="date" class="form-control" name="Tgl_Rawat" id="Tgl_Rawat">
+                            </div>
+                            <div class="mb-3">
+                                <label>Poliklinik</label>
+                                <select class="form-select" name="Poliklinik" id="Poliklinik">
+                                    <option selected>Umum</option>
+                                    <option value="Anak">Anak</option>
+                                    <option value="Demam">Demam</option>
+                                    <option value="Penyakit Dalam">Penyakit Dalam</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Nama Dokter</label>
+                                <input type="text" class="form-control" name="Nama_Dokter" id="Nama_Dokter">
+                            </div>
+                            <div class="mb-3">
+                                <label>Periksa</label>
+                                <textarea class="form-control" name="Periksa" id="Periksa" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label>Diagnosis</label>
+                                <textarea class="form-control" name="Diagnosis" id="Diagnosis" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label>Tindakan</label>
+                                <textarea class="form-control" name="Tindakan" id="Tindakan" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label>Obat</label>
+                                <textarea class="form-control" name="Obat" id="Obat" rows="3"></textarea>
+                            </div>
+
+                            <button type="reset" class="btn btn-danger">Clear</button>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="updatedata" class="btn btn-success">Update Data</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
             </div>
         </div>
+
+        <!-- End Modal Pop Up Edit Data -->
 
         <div class="card text">
             <div class=" card-header">
@@ -202,7 +263,6 @@ if (!empty($_SESSION["id"])) {
 
                 <div class="tab-content" id="myTabContent">
 
-
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
                         <div class="data_pasien" style='margin-bottom: 20px; margin-left: 15px;'>
@@ -213,6 +273,7 @@ if (!empty($_SESSION["id"])) {
                             $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
                             while ($row = mysqli_fetch_array($daftar_pasien)) {
                                 $no_rm = $row['No_RM'];
+                                $_SESSION['no_rm'] = $no_rm;
                                 $nama = $row['Nama'];
                                 $usia = $row['Usia'];
                                 $jk = $row['Jenis Kelamin'];
@@ -275,21 +336,22 @@ if (!empty($_SESSION["id"])) {
                                     while ($row = mysqli_fetch_array($rekam_medis)) :
                                         echo
                                         "<tr>
-                                    <td>" . $row['Tgl_Rawat'] . "</td>
-                                    <td>" . $row['Poliklinik'] . "</td>
-                                    <td>" . $row['Nama_Dokter'] . "</td>
-                                    <td>" . $row['Periksa'] . "</td>
-                                    <td>" . $row['Diagnosis'] . "</td>
-                                    <td>" . $row['Tindakan'] . "</td>
-                                    <td>" . $row['Obat'] . "</td>"; ?>
+                                        <td>" . $row['Tgl_Rawat'] . "</td>
+                                        <td>" . $row['Poliklinik'] . "</td>
+                                        <td>" . $row['Nama_Dokter'] . "</td>
+                                        <td>" . $row['Periksa'] . "</td>
+                                        <td>" . $row['Diagnosis'] . "</td>
+                                        <td>" . $row['Tindakan'] . "</td>
+                                        <td>" . $row['Obat'] . "</td>"; ?>
+
                                         <td style="text-align: center;">
-                                            <button type="button" class="btn btn-secondary">
+                                            <button type="button" class="btn btn-success editbtn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
                                                 </svg>
                                             </button>
-                                            <button type="button" class="btn btn-secondary">
+                                            <button type="button" class="btn btn-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
                                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
@@ -318,7 +380,36 @@ if (!empty($_SESSION["id"])) {
 
     <script src="../js/sidebar.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.editbtn').on('click', function() {
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#Tgl_Rawat').val(data[0]);
+                $('#Poliklinik').val(data[1]);
+                $('#Nama_Dokter').val(data[2]);
+                $('#Periksa').val(data[3]);
+                $('#Diagnosis').val(data[4]);
+                $('#Tindakan').val(data[5]);
+                $('#Obat').val(data[6]);
+
+            });
+        });
+    </script>
+
+
 
 </body>
 

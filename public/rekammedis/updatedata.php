@@ -3,10 +3,10 @@
 
 require '../config.php';
 
-$_SESSION['no_rm'];
 
-if (isset($_POST['submit'])) {
-    $nomor_rm = $_POST['Nomor_RM'];
+if (isset($_POST['updatedata'])) {
+    $id = $_POST['update_id'];
+
     $tgl_rawat = $_POST['Tgl_Rawat'];
     $newDate = date("Y-m-d", strtotime($tgl_rawat));
     $poliklinik = $_POST['Poliklinik'];
@@ -16,14 +16,13 @@ if (isset($_POST['submit'])) {
     $tindakan = $_POST['Tindakan'];
     $obat = $_POST['Obat'];
 
-
-    $query = "INSERT INTO rekam_medis (`No_RM`, `Tgl_Rawat`, `Poliklinik`, `Nama_Dokter`, `Periksa`, `Diagnosis`, `Tindakan`, `Obat`) VALUES ('" . $_SESSION['no_rm'] . "', '$newDate', '$poliklinik', '$nama_dokter', '$periksa', '$diagnosis', '$tindakan', '$obat')";
+    $query = "UPDATE rekam_medis SET Tgl_Rawat='$newDate', Poliklinik='$poliklinik', Nama_Dokter='$nama_dokter', Periksa='$periksa', Diagnosis='$diagnosis', Tindakan='$tindakan', Obat='$obat' WHERE id_rm='$id'  ";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
-        echo '<script> alert("Data Saved!"); </script>';
+        echo '<script> alert("Data Updated"); </script>';
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        echo '<script> alert("Error!"); </script>';
+        echo '<script> alert("Data Not Updated"); </script>';
     }
 }
