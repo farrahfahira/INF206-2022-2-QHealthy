@@ -122,6 +122,22 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/insert_data_rm.php" method="POST">
 
+                            <?php
+
+                            $id = $_GET['id'];
+                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                                $no_rm = $row['No_RM'];
+                            }
+
+                            echo '<div class="mb-3">';
+                            echo "<label>No Rekam Medis</label>";
+                            echo '<select class="form-select" name="Nomor_RM">';
+                            echo '<option value="  ' . $no_rm . ' ">' . $no_rm . '</option>';
+                            echo "</select>";
+                            echo "</div>";
+
+                            ?>
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Rawat</label>
                                 <input type="date" class="form-control" name="Tgl_Rawat">
@@ -165,6 +181,8 @@ if (!empty($_SESSION["id"])) {
                     </div>
 
 
+
+
                 </div>
             </div>
         </div>
@@ -206,8 +224,6 @@ if (!empty($_SESSION["id"])) {
                                 $no_telp = $row['No Telp'];
                             }
 
-
-
                             echo "No RM : " . $no_rm;
                             echo "<br />";
                             echo "Nama : " . $nama;
@@ -241,7 +257,7 @@ if (!empty($_SESSION["id"])) {
                             <table id="tabel_pemeriksaan" class="ui celled table" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>Tgl_Rawat</th>
+                                        <th>Tgl Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
@@ -253,6 +269,7 @@ if (!empty($_SESSION["id"])) {
                                 </thead>
                                 <tbody>
                                     <?php
+
                                     $id = $_GET['id'];
                                     $rekam_medis = mysqli_query($conn, "SELECT * from rekam_medis where No_RM='$id'");
                                     while ($row = mysqli_fetch_array($rekam_medis)) :
