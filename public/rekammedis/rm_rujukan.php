@@ -279,6 +279,68 @@ if (!empty($_SESSION["id"])) {
         </div>
         <!-- End Modal Pop Up Delete Data -->
 
+        <!-- Modal Pop Up View Data -->
+        <div class="modal fade" id="viewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Pemeriksaan) - View</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="../rekammedis/deletedata.php" method="POST">
+
+                            <h2>Hasil Pemeriksaan</h2>
+                            <hr>
+
+                            <?php
+
+                            $id = $_GET['id'];
+                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                                $id_rm = $row['id_rm'];
+                                $_SESSION['id_rm'] = $id_rm;
+                                $tgl_rawat = $row['Tgl_Rawat'];
+                                $poliklinik = $row['Poliklinik'];
+                                $nama_dokter  = $row['Nama_Dokter'];
+                                $periksa = $row['Periksa'];
+                                $diagnosis = $row['Diagnosis'];
+                                $tindakan = $row['Tindakan'];
+                                $obat = $row['Obat'];
+                            }
+
+                            echo "<b>Tanggal Rawat           : </b>" . $tgl_rawat;
+                            echo "<br />";
+                            echo "<b>Poliklinik              : </b>" . $poliklinik;
+                            echo "<br />";
+                            echo "<b>Nama Dokter             : </b>" . $nama_dokter;
+                            echo "<br />";
+                            echo "<b>Hasil Pemeriksaan       : </b>" . $periksa;
+                            echo "<br />";
+                            echo "<b>Diagnosis : </b>" . $diagnosis;
+                            echo "<br />";
+                            echo "<b>Tindakan yang diberikan : </b>" . $tindakan;
+                            echo "<br />";
+                            echo "<b>Obat yang diresepkan    : </b>" . $obat;
+                            echo "<br />";
+                            echo "<br />";
+
+                            ?>
+
+                            <div class="modal-footer">
+                                <button onclick="window.print()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Print</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up View Data -->
+
         <div class="card text">
             <div class=" card-header">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -349,6 +411,9 @@ if (!empty($_SESSION["id"])) {
                             <table id="tabel_pemeriksaan" class="ui celled table" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
+                                        <th colspan="8">Riwayat Hasil Pemeriksaan</th>
+                                    </tr>
+                                    <tr>
                                         <th>Tgl Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
@@ -376,6 +441,13 @@ if (!empty($_SESSION["id"])) {
                                         <td>" . $row['Obat'] . "</td>"; ?>
 
                                         <td style="text-align: center;">
+
+                                            <button type="button" class="btn btn-secondary viewbtn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                                </svg>
+                                            </button>
                                             <button type="button" class="btn btn-success editbtn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
@@ -413,6 +485,25 @@ if (!empty($_SESSION["id"])) {
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.viewbtn').on('click', function() {
+                $('#viewmodal').modal('show');
+                $.ajax({ //create an ajax request to display.php
+                    type: "GET",
+                    url: "display.php",
+                    dataType: "html", //expect html to be returned                
+                    success: function(response) {
+                        $("#responsecontainer").html(response);
+                        //alert(response);
+                    }
+                });
+            });
+
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
