@@ -268,8 +268,8 @@ if (!empty($_SESSION["id"])) {
                             <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="submit" name="deletedata" class="btn btn-success">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="deletedata" class="btn btn-danger">Delete</button>
                             </div>
                         </form>
                     </div>
