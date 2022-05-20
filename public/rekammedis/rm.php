@@ -55,7 +55,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <li class="tooltip-element" data-tooltip="0">
+                <li class="tooltip-element">
                     <a href="../daftarpasien/home.php" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -64,7 +64,7 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-                <li class="active-tab" data-tooltip="1">
+                <li class="active-tab">
                     <a href="rm.php" class="active" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
