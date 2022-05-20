@@ -33,7 +33,7 @@ if (!empty($_SESSION["id"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.semanticui.min.css">
 
-    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/hasilperiksa.css" />
 
 </head>
 
@@ -55,7 +55,7 @@ if (!empty($_SESSION["id"])) {
         <div class="sidebar-links">
             <ul>
                 <li class="tooltip-element" data-tooltip="0">
-                    <a href="../daftarpasien/home.php" data-active="0">
+                    <a href="home.php" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -63,15 +63,17 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-                <li class="active-tab" data-tooltip="1">
-                    <a href="rm.php" class="active" data-active="1">
-                        <div class="icon">
+
+                <li class="navbar-active-tab" data-tooltip="1">
+                    <a href="../rekammedis/rm.php" class="active" data-active="1">
+                        <div class="icon-navbar">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
                         </div>
                         <span class="link hide">Rekam Medis</span>
                     </a>
                 </li>
+
 
                 <div class="tooltip">
                     <span class="show">Daftar Pasien</span>
