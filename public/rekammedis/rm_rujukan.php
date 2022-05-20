@@ -40,9 +40,6 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <span class="shrink-btn">
-                <i class="bx bx-chevron-left"></i>
-            </span>
             <img src="../assets/logo.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
@@ -54,8 +51,8 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <li class="tooltip-element" data-tooltip="0">
-                    <a href="home.php" data-active="0">
+                <li class="tooltip-element">
+                    <a href="../daftarpasien/home.php" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -64,7 +61,7 @@ if (!empty($_SESSION["id"])) {
                     </a>
                 </li>
 
-                <li class="navbar-active-tab" data-tooltip="1">
+                <li class="navbar-active-tab">
                     <a href="../rekammedis/rm.php" class="active" data-active="1">
                         <div class="icon-navbar">
                             <i class="bx bx-folder"></i>
@@ -483,7 +480,6 @@ if (!empty($_SESSION["id"])) {
 
     </main>
 
-    <script src="../js/sidebar.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
