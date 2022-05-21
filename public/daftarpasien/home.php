@@ -41,9 +41,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <span class="shrink-btn">
-                <i class="bx bx-chevron-left"></i>
-            </span>
+
             <img src="../assets/logo.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
@@ -86,7 +84,7 @@ if (!empty($_SESSION["id"])) {
             <a href="#" class="account tooltip-element" data-tooltip="0">
                 <i class="bx bx-user"></i>
             </a>
-            <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-user tooltip-element">
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
