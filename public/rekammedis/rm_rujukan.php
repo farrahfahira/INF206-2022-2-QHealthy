@@ -83,7 +83,8 @@ if (!empty($_SESSION["id"])) {
             <a href="#" class="account tooltip-element" data-tooltip="0">
                 <i class="bx bx-user"></i>
             </a>
-            <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-user tooltip-element">
+                <!--sebelumnya ada data-tooltip="1"-->
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
