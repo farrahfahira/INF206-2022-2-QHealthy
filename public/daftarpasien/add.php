@@ -8,11 +8,14 @@ if(isset($_POST["submit"])){
   $nama = $_POST["Nama"];
   $usia = $_POST["Usia"];
   $jeniskelamin = $_POST["JenisKelamin"];
+  $goldar = $_POST["GolDarah"];
+  $tb = $_POST["TB"];
+  $bb = $_POST["BB"];
   $pekerjaan = $_POST["Pekerjaan"];
   $alamat = $_POST["Alamat"];
   $notelp = $_POST["NoTelp"];
 
-  $query = "INSERT INTO dftr_pasien VALUES('0','$norm','$nama','$usia','$jeniskelamin','$pekerjaan','$alamat','$notelp')";
+  $query = "INSERT INTO daftar_pasien VALUES('0','$norm','$nama','$usia','$jeniskelamin', '$goldar', '$tb', '$bb', '$pekerjaan','$alamat','$notelp')";
   mysqli_query($conn, $query);
   echo
   "<script> alert('Data Ditambahkan!'); </script>";
@@ -134,6 +137,21 @@ if(isset($_POST["submit"])){
         <option value="Perempuan">Perempuan</option>
       </select>
       <!-- End Select -->
+
+      <!-- Select --> 
+      <label for="GolDarah">Golongan Darah</label>
+      <select id="GolDarah" name="GolDarah">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>
+      </select>
+      <!-- End Select -->
+
+      <label for="TB">Tinggi Badan  </label>
+      <input type="number" class="field" name="TB" id = "TB" min="1" max="500" required value=""> <br>
+      <label for="BB">Berat Badan  </label>
+      <input type="number" class="field" name="BB" id = "BB" min="1" max="500" required value=""> <br>
 
       <label for="Pekerjaan">Pekerjaan  </label>
       <input type="text" class="field" name="Pekerjaan" placeholder="e.g. Buruh" id = "Perkerjaan" required value=""> <br>
