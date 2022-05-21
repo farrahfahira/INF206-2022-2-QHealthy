@@ -133,7 +133,7 @@ if (!empty($_SESSION["id"])) {
             <tbody>
                 <?php
                 $no = 1;
-                $daftar_pasien = mysqli_query($conn, "select * from dftr_pasien order by no desc");
+                $daftar_pasien = mysqli_query($conn, "select * from daftar_pasien order by no desc");
                 while ($row = mysqli_fetch_array($daftar_pasien)) :
                     echo
                     "<tr>
