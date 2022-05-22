@@ -49,14 +49,12 @@ if (!empty($_SESSION["id"])) {
         </div>
 
         <div class="search">
-            <i class="bx bx-search"></i>
-            <input type="text" class="hide" placeholder="Quick Search ..." />
         </div>
 
         <div class="sidebar-links">
             <ul>
                 <div class="active-tab"></div>
-                <li class="tooltip-element" data-tooltip="0">
+                <li class="tooltip-element">
                     <a href="home.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -65,7 +63,7 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-                <li class="tooltip-element" data-tooltip="1">
+                <li class="tooltip-element">
                     <a href="../rekammedis/rm.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
@@ -86,7 +84,7 @@ if (!empty($_SESSION["id"])) {
             <a href="#" class="account tooltip-element" data-tooltip="0">
                 <i class="bx bx-user"></i>
             </a>
-            <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-user tooltip-element">
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
@@ -150,12 +148,12 @@ if (!empty($_SESSION["id"])) {
         </div>
 
 
-        
 
 
-        
 
-        
+
+
+
     </main>
 
     <script src="../js/sidebar.js"></script>
