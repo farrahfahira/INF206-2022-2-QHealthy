@@ -106,14 +106,13 @@ if (!empty($_SESSION["id"])) {
     </nav>
 
     <main>
-        <h1>Daftar Pasien</h1>
-        </br>
+        <h1>Detail Pasien</h1>
         <hr>
         <div class="data_pasien">
             <?php
 
             $id = $_GET['id'];
-            $daftar_pasien = mysqli_query($conn, "SELECT * FROM dftr_pasien WHERE No_RM = '$id'");
+            $daftar_pasien = mysqli_query($conn, "SELECT * FROM daftar_pasien WHERE No_RM = '$id'");
             while ($row = mysqli_fetch_array($daftar_pasien)) {
                 $no_rm = $row['No_RM'];
                 $nama = $row['Nama'];
