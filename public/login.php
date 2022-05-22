@@ -1,25 +1,34 @@
 <?php
 require 'config.php';
-if(!empty($_SESSION["id"])){
+if (!empty($_SESSION["id"])) {
   header("Location: daftarpasien/home.php");
 }
-if(isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
   $usernameemail = $_POST["usernameemail"];
   $password = $_POST["password"];
   $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$usernameemail' OR email = '$usernameemail'");
   $row = mysqli_fetch_assoc($result);
-  if(mysqli_num_rows($result) > 0){
-    if($password == $row['password']){
-      $_SESSION["login"] = true;
-      $_SESSION["id"] = $row["id"];
-      header("Location: daftarpasien/home.php");
+  if (mysqli_num_rows($result) > 0) {
+    if ($row['user'] == 'perekam medik') {
+      if ($password == $row['password']) {
+        $_SESSION["login"] = true;
+        $_SESSION["id"] = $row["id"];
+        header("Location: daftarpasien/home.php");
+      } else {
+        echo
+        "<script> alert('Wrong Password'); </script>";
+      }
+    } else {
+      if ($password == $row['password']) {
+        $_SESSION["login"] = true;
+        $_SESSION["id"] = $row["id"];
+        header("Location: daftarpasien/home_dua.php");
+      } else {
+        echo
+        "<script> alert('Wrong Password'); </script>";
+      }
     }
-    else{
-      echo
-      "<script> alert('Wrong Password'); </script>";
-    }
-  }
-  else{
+  } else {
     echo
     "<script> alert('User Not Registered'); </script>";
   }
@@ -74,53 +83,54 @@ if(isset($_POST["submit"])){
       background: #555;
     }
   </style>
-    <!-- My CSS -->
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Login | QHealthy</title>
-    </head>
+  <!-- My CSS -->
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Login | QHealthy</title>
+</head>
 
-    <body>
-      <div class="d-flex align-items-center min-vh-100">
-        <div class="container card-login">
-          <div class="text-center">
-            <h2 class="fw-bold mb-5 pb-2 logo">
-              <a href="index.php" style="text-decoration: none; color: inherit;">Q<span class="fw-normal">Healthy</span></a>
-            </h2>
-            <form class="px-5" method="POST" action="" autocomplete="off">
-              <div class="mb-5">
-                <h6 class="fw-bold text-muted mb-3">Silakan Login</h6>
-                <input type="text" name="usernameemail" id="usernameemail" class="form-control style-form" name="email" placeholder="Username or Email" required value="" />
-              </div>
-              <div class="mb-5">
-                <input type="password" name="password" id="password" class="form-control style-form" id="password" placeholder="password" required value="" />
-                  <span>
-                    <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
-                  </span>
-              </div>
-              <button type="submit" name="submit" class="btn shadow-sm border-3 py-1 px-4 mb-5 fw-bold text-white">Login</button>
-            </form>
+<body>
+  <div class="d-flex align-items-center min-vh-100">
+    <div class="container card-login">
+      <div class="text-center">
+        <h2 class="fw-bold mb-5 pb-2 logo">
+          <a href="index.php" style="text-decoration: none; color: inherit;">Q<span class="fw-normal">Healthy</span></a>
+        </h2>
+        <form class="px-5" method="POST" action="" autocomplete="off">
+          <div class="mb-5">
+            <h6 class="fw-bold text-muted mb-3">Silakan Login</h6>
+            <input type="text" name="usernameemail" id="usernameemail" class="form-control style-form" name="email" placeholder="Username or Email" required value="" />
           </div>
-        </div>
+          <div class="mb-5">
+            <input type="password" name="password" id="password" class="form-control style-form" id="password" placeholder="password" required value="" />
+            <span>
+              <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+            </span>
+          </div>
+          <button type="submit" name="submit" class="btn shadow-sm border-3 py-1 px-4 mb-5 fw-bold text-white">Login</button>
+        </form>
       </div>
+    </div>
+  </div>
 
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-      <script src="js/pop-up.js"></script>
-      <script>
-        var state = false;
-          function toggle() {
-            if (state) {
-              document.getElementById("password").setAttribute("type","password");
-              document.getElementById("eye").style.color ='#71797e';
-              state = false;
-            }
-           else{
-             document.getElementById("password").setAttribute("type","text");
-             document.getElementById("eye").style.color = '#64BCF4';
-             state = true;
-            }
-          }
-      </script>
-    </body>
-    </html>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src="js/pop-up.js"></script>
+  <script>
+    var state = false;
+
+    function toggle() {
+      if (state) {
+        document.getElementById("password").setAttribute("type", "password");
+        document.getElementById("eye").style.color = '#71797e';
+        state = false;
+      } else {
+        document.getElementById("password").setAttribute("type", "text");
+        document.getElementById("eye").style.color = '#64BCF4';
+        state = true;
+      }
+    }
+  </script>
+</body>
+
+</html>
