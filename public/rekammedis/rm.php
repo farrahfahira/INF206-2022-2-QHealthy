@@ -125,7 +125,7 @@ if (!empty($_SESSION["id"])) {
                     <td> <a href='rm_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
                     <td>" . $row['Nama'] . "</td>
                     <td>" . $row['Usia'] . "</td>
-                    <td>" . $row['Jenis Kelamin'] . "</td>"; ?>
+                    <td>" . $row['Jenis_Kelamin'] . "</td>"; ?>
                     </tr>
                 <?php endwhile; ?>
 
