@@ -106,7 +106,7 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
-        <!-- Modal Pop Up Insert Data -->
+        <!-- Modal Pop Up Insert Data Hasil Pemeriksaan-->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -164,7 +164,55 @@ if (!empty($_SESSION["id"])) {
                 </div>
             </div>
         </div>
-        <!-- End Modal Pop Up Insert Data -->
+        <!-- End Modal Pop Up Insert Data Hasil Lab-->
+
+        <!-- Modal Pop Up Insert Data Hasil Pemeriksaan-->
+        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Laboratorium) - Input</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="../rekammedis/insert_data_rm.php" method="POST">
+
+
+                            <div class="mb-3">
+                                <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
+                                <input type="date" class="form-control" name="Tgl_Pemeriksaan">
+                            </div>
+                            <div class="mb-3">
+                                <label>Jenis Laboratorium</label>
+                                <select class="form-select" name="Jenis_Lab">
+                                    <option selected> Patologi Klinik</option>
+                                    <option value="Anak">Patologi Anatomi</option>
+                                    <option value="Demam">Darah/option>
+                                    <option value="Penyakit Dalam">Mikrobiologi Klinik</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Nama Laboran</label>
+                                <input type="text" class="form-control" name="Nama_Laboran">
+                            </div>
+                            <div class="mb-3">
+                                <label>Hasil Laboratorium</label>
+                                <textarea class="form-control" name="Hasil_Lab" rows="3"></textarea>
+                            </div>
+                            <button type="reset" class="btn btn-danger">Clear</button>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up Insert Data Hasil Lab-->
 
         <!-- Modal Pop Up Edit Data -->
         <div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -521,7 +569,7 @@ if (!empty($_SESSION["id"])) {
                         </div>
 
                         <div class="container">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                                 Add Data
                             </button>
                         </div>
