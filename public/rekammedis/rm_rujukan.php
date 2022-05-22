@@ -177,7 +177,7 @@ if (!empty($_SESSION["id"])) {
 
                     <div class="modal-body">
 
-                        <form action="../rekammedis/insert_data_rm.php" method="POST">
+                        <form action="../rekammedis/hasil_lab/insertdata.php" method="POST">
 
 
                             <div class="mb-3">
@@ -188,9 +188,9 @@ if (!empty($_SESSION["id"])) {
                                 <label>Jenis Laboratorium</label>
                                 <select class="form-select" name="Jenis_Lab">
                                     <option selected> Patologi Klinik</option>
-                                    <option value="Anak">Patologi Anatomi</option>
-                                    <option value="Demam">Darah/option>
-                                    <option value="Penyakit Dalam">Mikrobiologi Klinik</option>
+                                    <option value="Patologi Anatomi">Patologi Anatomi</option>
+                                    <option value="Darah">Darah</option>
+                                    <option value="Mikrobiologi Klinik">Mikrobiologi Klinik</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -214,7 +214,7 @@ if (!empty($_SESSION["id"])) {
         </div>
         <!-- End Modal Pop Up Insert Data Hasil Lab-->
 
-        <!-- Modal Pop Up Edit Data -->
+        <!-- Modal Pop Up Edit Data Hasil Pemeriksaan-->
         <div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -285,7 +285,66 @@ if (!empty($_SESSION["id"])) {
                 </div>
             </div>
         </div>
-        <!-- End Modal Pop Up Edit Data -->
+        <!-- End Modal Pop Up Edit Data Hasil Pemeriksaan -->
+
+        <!-- Modal Pop Up Edit Data Hasil Laboratorium-->
+        <div class="modal fade" id="editmodal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Laboratorium) - Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="../rekammedis/hasil_lab/updatedata.php" method="POST">
+
+                            <?php
+
+                            $id = $_GET['id'];
+                            $hasil_lab = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($hasil_lab)) {
+                                $id_rm = $row['id_rm'];
+                                $_SESSION['id_rm'] = $id_rm;
+                            }
+
+                            ?>
+
+                            <div class="mb-3">
+                                <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
+                                <input type="date" class="form-control" name="Tgl_Pemeriksaan">
+                            </div>
+                            <div class="mb-3">
+                                <label>Jenis Laboratorium</label>
+                                <select class="form-select" name="Jenis_Lab">
+                                    <option selected> Patologi Klinik</option>
+                                    <option value="Patologi Anatomi">Patologi Anatomi</option>
+                                    <option value="Darah">Darah</option>
+                                    <option value="Mikrobiologi Klinik">Mikrobiologi Klinik</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Nama Laboran</label>
+                                <input type="text" class="form-control" name="Nama_Laboran">
+                            </div>
+                            <div class="mb-3">
+                                <label>Hasil Laboratorium</label>
+                                <textarea class="form-control" name="Hasil_Lab" rows="3"></textarea>
+                            </div>
+                            <button type="reset" class="btn btn-danger">Clear</button>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="updatedata" class="btn btn-success">Update Data</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up Edit Data Hasil Laboratorium-->
 
         <!-- Modal Pop Up Delete Data -->
         <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -610,7 +669,7 @@ if (!empty($_SESSION["id"])) {
                                                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
                                             </button>
-                                            <button type="button" class="btn btn-success editbtn">
+                                            <button type="button" class="btn btn-success editbtn2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
@@ -649,6 +708,7 @@ if (!empty($_SESSION["id"])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+    <!-- Script Hasil Pemeriksaan-->
     <script>
         $(document).ready(function() {
 
@@ -689,6 +749,7 @@ if (!empty($_SESSION["id"])) {
         });
     </script>
 
+
     <script>
         $(document).ready(function() {
             $('.editbtn').on('click', function() {
@@ -709,6 +770,72 @@ if (!empty($_SESSION["id"])) {
                 $('#Diagnosis').val(data[4]);
                 $('#Tindakan').val(data[5]);
                 $('#Obat').val(data[6]);
+
+            });
+        });
+    </script>
+
+    <!-- End Script Hasil Pemeriksaan-->
+
+    <!-- Script Hasil Laboratorium -->
+
+    <script>
+        $(document).ready(function() {
+
+            $('.viewbtn2').on('click', function() {
+                $('#viewmodal2').modal('show');
+                $.ajax({ //create an ajax request to display.php
+                    type: "GET",
+                    url: "display.php",
+                    dataType: "html", //expect html to be returned                
+                    success: function(response) {
+                        $("#responsecontainer").html(response);
+                        //alert(response);
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.deletebtn2').on('click', function() {
+
+                $('#deletemodal2').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#delete_id').val(data[0]);
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.editbtn2').on('click', function() {
+                $('#editmodal2').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#Tgl_Pemeriksaan').val(data[0]);
+                $('#Jenis_Lab').val(data[1]);
+                $('#Nama_Laboran').val(data[2]);
+                $('#Hasil_Lab').val(data[3]);
 
             });
         });
