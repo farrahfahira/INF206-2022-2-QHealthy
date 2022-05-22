@@ -313,11 +313,11 @@ if (!empty($_SESSION["id"])) {
 
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
-                                <input type="date" class="form-control" name="Tgl_Pemeriksaan">
+                                <input type="date" class="form-control" name="Tgl_Pemeriksaan" id="Tgl_Pemeriksaan">
                             </div>
                             <div class="mb-3">
                                 <label>Jenis Laboratorium</label>
-                                <select class="form-select" name="Jenis_Lab">
+                                <select class="form-select" name="Jenis_Lab" id="Jenis_Lab">
                                     <option selected> Patologi Klinik</option>
                                     <option value="Patologi Anatomi">Patologi Anatomi</option>
                                     <option value="Darah">Darah</option>
@@ -326,11 +326,11 @@ if (!empty($_SESSION["id"])) {
                             </div>
                             <div class="mb-3">
                                 <label>Nama Laboran</label>
-                                <input type="text" class="form-control" name="Nama_Laboran">
+                                <input type="text" class="form-control" name="Nama_Laboran" id="Nama_Laboran">
                             </div>
                             <div class="mb-3">
                                 <label>Hasil Laboratorium</label>
-                                <textarea class="form-control" name="Hasil_Lab" rows="3"></textarea>
+                                <textarea class="form-control" name="Hasil_Lab" id="Hasil_Lab" rows="3"></textarea>
                             </div>
                             <button type="reset" class="btn btn-danger">Clear</button>
 
@@ -346,7 +346,7 @@ if (!empty($_SESSION["id"])) {
         </div>
         <!-- End Modal Pop Up Edit Data Hasil Laboratorium-->
 
-        <!-- Modal Pop Up Delete Data -->
+        <!-- Modal Pop Up Delete Data Hasil Pemeriksaan-->
         <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -364,6 +364,44 @@ if (!empty($_SESSION["id"])) {
                             $id = $_GET['id'];
                             $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
                             while ($row = mysqli_fetch_array($daftar_pasien)) {
+                                $id_rm = $row['id_rm'];
+                                $_SESSION['id_rm'] = $id_rm;
+                            }
+
+                            ?>
+
+                            <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" name="deletedata" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up Delete Data Hasil Pemeriksaan -->
+
+        <!-- Modal Pop Up Delete Data Hasil Laboratorium-->
+        <div class="modal fade" id="deletemodal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Laboratorium) - Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="../rekammedis/hasil_lab/deletedata.php" method="POST">
+
+                            <?php
+
+                            $id = $_GET['id'];
+                            $hasil_lab = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($hasil_lab)) {
                                 $id_rm = $row['id_rm'];
                                 $_SESSION['id_rm'] = $id_rm;
                             }
@@ -638,14 +676,14 @@ if (!empty($_SESSION["id"])) {
                             <table id="tabel_hasil_lab" class="ui celled table" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th colspan="8">Hasil Pemeriksaan Laboratorium</th>
+                                        <th colspan="5">Hasil Pemeriksaan Laboratorium</th>
                                     </tr>
                                     <tr>
                                         <th>Tgl Pemeriksaan</th>
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
                                         <th>Hasil Laboratorium</th>
-                                        <th style="width:120px;">Action</p>
+                                        <th style="width:200px;">Action</p>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -663,19 +701,19 @@ if (!empty($_SESSION["id"])) {
 
                                         <td style="text-align: center;">
 
-                                            <button type="button" class="btn btn-secondary viewbtn">
+                                            <button type="button" class="btn btn-secondary viewbtn2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                                     <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
                                             </button>
-                                            <button type="button" class="btn btn-success editbtn2">
+                                            <button type="button" class="btn btn-success editbtn_lab">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
                                                 </svg>
                                             </button>
-                                            <button type="button" class="btn btn-danger deletebtn">
+                                            <button type="button" class="btn btn-danger deletebtn2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
                                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
@@ -821,7 +859,7 @@ if (!empty($_SESSION["id"])) {
 
     <script>
         $(document).ready(function() {
-            $('.editbtn2').on('click', function() {
+            $('.editbtn_lab').on('click', function() {
                 $('#editmodal2').modal('show');
 
                 $tr = $(this).closest('tr');
