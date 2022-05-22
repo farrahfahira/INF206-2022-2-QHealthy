@@ -49,6 +49,8 @@ if (!empty($_SESSION["id"])) {
         </div>
 
         <div class="search">
+            <i class="bx bx-search"></i>
+            <input type="text" class="hide" placeholder="Quick Search ..." />
         </div>
 
         <div class="sidebar-links">
@@ -89,7 +91,7 @@ if (!empty($_SESSION["id"])) {
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
                         <h3>Admin</h3>
-                        <?php echo '<h5>' . $row['name'] . '</h5>'; ?>
+                        <h5>Fulan</h5>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">
@@ -115,13 +117,13 @@ if (!empty($_SESSION["id"])) {
                 $no_rm = $row['No_RM'];
                 $nama = $row['Nama'];
                 $usia = $row['Usia'];
-                $jk = $row['Jenis Kelamin'];
-                $goldar = $row['Gol Darah'];
+                $jk = $row['Jenis_Kelamin'];
+                $goldar = $row['Gol_Darah'];
                 $tb = $row['TB'];
                 $bb = $row['BB'];
                 $pekerjaan = $row['Pekerjaan'];
                 $alamat = $row['Alamat'];
-                $no_telp = $row['No Telp'];
+                $no_telp = $row['No_Telp'];
             }
 
             echo "No RM : " . $no_rm;
@@ -148,12 +150,12 @@ if (!empty($_SESSION["id"])) {
         </div>
 
 
+        
 
 
+        
 
-
-
-
+        
     </main>
 
     <script src="../js/sidebar.js"></script>
