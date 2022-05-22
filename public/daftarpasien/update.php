@@ -98,8 +98,8 @@ if (mysqli_num_rows($query) < 1) {
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
-                        <h3>Admin</h3>
-                        <h5>Fulan</h5>
+                        <?php echo '<h3>' . $row['user'] . '</h3>'; ?>
+                        <?php echo '<h5>' . $row['name'] . '</h5>'; ?>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">

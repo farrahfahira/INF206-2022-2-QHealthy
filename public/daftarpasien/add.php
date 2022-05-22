@@ -3,6 +3,11 @@ require '../config.php';
 if (empty($_SESSION["id"])) {
     header("Location: ../index.php");
 }
+if (!empty($_SESSION["id"])) {
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+}
 if (isset($_POST["submit"])) {
     $norm = $_POST["NoRM"];
     $nama = $_POST["Nama"];
@@ -100,8 +105,8 @@ if (isset($_POST["submit"])) {
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
-                        <h3>Admin</h3>
-                        <h5>Fulan</h5>
+                        <?php echo '<h3>' . $row['user'] . '</h3>'; ?>
+                        <?php echo '<h5>' . $row['name'] . '</h5>'; ?>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">
