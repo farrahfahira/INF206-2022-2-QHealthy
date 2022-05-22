@@ -89,7 +89,7 @@ if (!empty($_SESSION["id"])) {
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
                         <h3>Admin</h3>
-                        <h5>Fulan</h5>
+                        <?php echo '<h5>' . $row['name'] . '</h5>'; ?>
                     </div>
                 </div>
                 <a class="btn log-out" href="../logout.php">
