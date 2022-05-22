@@ -106,53 +106,7 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
-        <!-- Modal Pop Up Insert Data Hasil Laboratorium-->
-        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Laboratorium) - Input</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
 
-                    <div class="modal-body">
-
-                        <form action="../rekammedis/hasil_lab/insertdata.php" method="POST">
-
-
-                            <div class="mb-3">
-                                <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
-                                <input type="date" class="form-control" name="Tgl_Pemeriksaan">
-                            </div>
-                            <div class="mb-3">
-                                <label>Jenis Laboratorium</label>
-                                <select class="form-select" name="Jenis_Lab">
-                                    <option selected> Patologi Klinik</option>
-                                    <option value="Patologi Anatomi">Patologi Anatomi</option>
-                                    <option value="Darah">Darah</option>
-                                    <option value="Mikrobiologi Klinik">Mikrobiologi Klinik</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label>Nama Laboran</label>
-                                <input type="text" class="form-control" name="Nama_Laboran">
-                            </div>
-                            <div class="mb-3">
-                                <label>Hasil Laboratorium</label>
-                                <textarea class="form-control" name="Hasil_Lab" rows="3"></textarea>
-                            </div>
-                            <button type="reset" class="btn btn-danger">Clear</button>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" name="submit" class="btn btn-success">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Modal Pop Up Insert Data Hasil Lab-->
 
 
         <!-- Modal Pop Up Edit Data Hasil Laboratorium-->
@@ -168,7 +122,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/updatedata.php" method="POST">
 
-                            <input name="update_id2" id="update_id2">
+                            <input type="hidden" name="update_id2" id="update_id2">
 
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
@@ -247,7 +201,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/deletedata.php" method="POST">
 
-                            <input name="delete_id2" id="delete_id2">
+                            <input type="hidden" name="delete_id2" id="delete_id2">
 
                             <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
 
@@ -263,7 +217,7 @@ if (!empty($_SESSION["id"])) {
         </div>
         <!-- End Modal Pop Up Delete Data Hasil Lab -->
 
-        <!-- Modal Pop Up View Data -->
+        <!-- Modal Pop Up View Data Hasil Pemeriksaan-->
         <div class="modal fade" id="viewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -324,7 +278,62 @@ if (!empty($_SESSION["id"])) {
                 </div>
             </div>
         </div>
-        <!-- End Modal Pop Up View Data -->
+        <!-- End Modal Pop Up View Data Hasil Pemeriksaan-->
+
+        <!-- Modal Pop Up View Data Hasil Lab -->
+        <div class="modal fade" id="viewmodal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rekam Medis (Hasil Laboratorium) - View</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="hasil_lab/deletedata.php" method="POST">
+
+                            <h2>Hasil Pemeriksaan</h2>
+                            <hr>
+
+                            <input type="hidden" name="delete_id2" id="delete_id2">
+
+                            <?php
+
+                            $id = $_GET['id'];
+                            $hasil_labo = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
+                            while ($row = mysqli_fetch_array($hasil_labo)) {
+                                $id_rm = $row['id_rm'];
+                                $tgl_pemeriksaan = $row['Tgl_Pemeriksaan'];
+                                $jenis_lab = $row['Jenis_Lab'];
+                                $nama_laboran  = $row['Nama_Laboran'];
+                                $hasil_lab = $row['Hasil_Lab'];
+                            }
+
+                            echo "<b>Tanggal Pemeriksaan           : </b>" . $tgl_pemeriksaan;
+                            echo "<br />";
+                            echo "<b>Jenis Laboratroium              : </b>" . $jenis_lab;
+                            echo "<br />";
+                            echo "<b>Nama Laboran             : </b>" . $nama_laboran;
+                            echo "<br />";
+                            echo "<b>Hasil Laboratorium      : </b>" . $hasil_lab;
+                            echo "<br />";
+
+                            ?>
+                            <div class="modal-footer">
+                                <button onclick="window.print()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Print</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Pop Up View Data Hasil Pemeriksaan -->
+
+
+
 
         <div class="card text">
             <div class=" card-header">
