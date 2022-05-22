@@ -229,16 +229,6 @@ if (!empty($_SESSION["id"])) {
 
                             <input type="hidden" name="update_id" id="update_id">
 
-                            <?php
-
-                            $id = $_GET['id'];
-                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
-                            while ($row = mysqli_fetch_array($daftar_pasien)) {
-                                $id_rm = $row['id_rm'];
-                                $_SESSION['id_rm'] = $id_rm;
-                            }
-
-                            ?>
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Rawat</label>
                                 <input type="date" class="form-control" name="Tgl_Rawat" id="Tgl_Rawat">
@@ -300,16 +290,6 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/updatedata.php" method="POST">
 
-                            <?php
-
-                            $id = $_GET['id'];
-                            $hasil_lab = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
-                            while ($row = mysqli_fetch_array($hasil_lab)) {
-                                $id_rm = $row['id_rm'];
-                                $_SESSION['id_rm'] = $id_rm;
-                            }
-
-                            ?>
 
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
@@ -359,16 +339,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/deletedata.php" method="POST">
 
-                            <?php
-
-                            $id = $_GET['id'];
-                            $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
-                            while ($row = mysqli_fetch_array($daftar_pasien)) {
-                                $id_rm = $row['id_rm'];
-                                $_SESSION['id_rm'] = $id_rm;
-                            }
-
-                            ?>
+                            <input type="hidden" name="delete_id" id="delete_id">
 
                             <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
 
@@ -403,7 +374,6 @@ if (!empty($_SESSION["id"])) {
                             $hasil_lab = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
                             while ($row = mysqli_fetch_array($hasil_lab)) {
                                 $id_rm = $row['id_rm'];
-                                $_SESSION['id_rm'] = $id_rm;
                             }
 
                             ?>
@@ -438,13 +408,14 @@ if (!empty($_SESSION["id"])) {
                             <h2>Hasil Pemeriksaan</h2>
                             <hr>
 
+                            <input type="hidden" name="delete_id" id="delete_id">
+
                             <?php
 
                             $id = $_GET['id'];
                             $daftar_pasien = mysqli_query($conn, "SELECT * FROM rekam_medis WHERE No_RM = '$id'");
                             while ($row = mysqli_fetch_array($daftar_pasien)) {
                                 $id_rm = $row['id_rm'];
-                                $_SESSION['id_rm'] = $id_rm;
                                 $tgl_rawat = $row['Tgl_Rawat'];
                                 $poliklinik = $row['Poliklinik'];
                                 $nama_dokter  = $row['Nama_Dokter'];
@@ -559,6 +530,7 @@ if (!empty($_SESSION["id"])) {
                                         <th colspan="8">Riwayat Hasil Pemeriksaan</th>
                                     </tr>
                                     <tr>
+                                        <th>id_rm</th>
                                         <th>Tgl Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
@@ -577,6 +549,7 @@ if (!empty($_SESSION["id"])) {
                                     while ($row = mysqli_fetch_array($rekam_medis)) :
                                         echo
                                         "<tr>
+                                        <td>" . $row['id_rm'] . "</td>
                                         <td>" . $row['Tgl_Rawat'] . "</td>
                                         <td>" . $row['Poliklinik'] . "</td>
                                         <td>" . $row['Nama_Dokter'] . "</td>
@@ -614,9 +587,18 @@ if (!empty($_SESSION["id"])) {
 
                             <script>
                                 $(document).ready(function() {
-                                    $('#tabel_pemeriksaan').DataTable();
+                                    $('#tabel_pemeriksaan').DataTable({
+                                        columnDefs: [{
+                                            target: 0,
+                                            visible: false,
+                                            searchable: false,
+                                        }, ],
+
+
+                                    });
                                 });
                             </script>
+
                         </div>
                     </div>
                     <!-- end  hasil pemeriksaan -->
@@ -743,7 +725,6 @@ if (!empty($_SESSION["id"])) {
     </main>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <!-- Script Hasil Pemeriksaan-->
@@ -801,13 +782,14 @@ if (!empty($_SESSION["id"])) {
 
                 console.log(data);
 
-                $('#Tgl_Rawat').val(data[0]);
-                $('#Poliklinik').val(data[1]);
-                $('#Nama_Dokter').val(data[2]);
-                $('#Periksa').val(data[3]);
-                $('#Diagnosis').val(data[4]);
-                $('#Tindakan').val(data[5]);
-                $('#Obat').val(data[6]);
+                $('#update_id').val(data[0]);
+                $('#Tgl_Rawat').val(data[1]);
+                $('#Poliklinik').val(data[2]);
+                $('#Nama_Dokter').val(data[3]);
+                $('#Periksa').val(data[4]);
+                $('#Diagnosis').val(data[5]);
+                $('#Tindakan').val(data[6]);
+                $('#Obat').val(data[7]);
 
             });
         });
