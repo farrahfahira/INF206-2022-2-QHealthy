@@ -1,6 +1,5 @@
 <?php
 
-
 require '../config.php';
 
 $_SESSION['no_rm'];
