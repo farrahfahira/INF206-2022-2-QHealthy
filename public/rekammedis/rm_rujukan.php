@@ -477,13 +477,13 @@ if (!empty($_SESSION["id"])) {
                                 $_SESSION['no_rm'] = $no_rm;
                                 $nama = $row['Nama'];
                                 $usia = $row['Usia'];
-                                $jk = $row['Jenis Kelamin'];
-                                $goldar = $row['Gol Darah'];
+                                $jk = $row['Jenis_Kelamin'];
+                                $goldar = $row['Gol_Darah'];
                                 $tb = $row['TB'];
                                 $bb = $row['BB'];
                                 $pekerjaan = $row['Pekerjaan'];
                                 $alamat = $row['Alamat'];
-                                $no_telp = $row['No Telp'];
+                                $no_telp = $row['No_Telp'];
                             }
 
                             echo "No RM : " . $no_rm;
@@ -608,13 +608,13 @@ if (!empty($_SESSION["id"])) {
                                 $_SESSION['no_rm'] = $no_rm;
                                 $nama = $row['Nama'];
                                 $usia = $row['Usia'];
-                                $jk = $row['Jenis Kelamin'];
-                                $goldar = $row['Gol Darah'];
+                                $jk = $row['Jenis_Kelamin'];
+                                $goldar = $row['Gol_Darah'];
                                 $tb = $row['TB'];
                                 $bb = $row['BB'];
                                 $pekerjaan = $row['Pekerjaan'];
                                 $alamat = $row['Alamat'];
-                                $no_telp = $row['No Telp'];
+                                $no_telp = $row['No_Telp'];
                             }
 
                             echo "No RM : " . $no_rm;
