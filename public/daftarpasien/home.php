@@ -47,8 +47,6 @@ if (!empty($_SESSION["id"])) {
         </div>
 
         <div class="search">
-            <i class="bx bx-search"></i>
-            <input type="text" class="hide" placeholder="Quick Search ..." />
         </div>
 
         <div class="sidebar-links">
