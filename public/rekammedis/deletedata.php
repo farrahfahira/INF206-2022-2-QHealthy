@@ -2,10 +2,11 @@
 
 require '../config.php';
 
-$_SESSION['id_rm'];
 
 if (isset($_POST['deletedata'])) {
-    $query = "DELETE FROM rekam_medis WHERE id_rm='" . $_SESSION['id_rm'] . "'";
+    $id = $_POST['delete_id'];
+
+    $query = "DELETE FROM rekam_medis WHERE id_rm='$id'";
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
