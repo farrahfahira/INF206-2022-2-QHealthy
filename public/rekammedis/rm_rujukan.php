@@ -117,7 +117,7 @@ if (!empty($_SESSION["id"])) {
 
                     <div class="modal-body">
 
-                        <form action="../rekammedis/insert_data_rm.php" method="POST">
+                        <form action="../rekammedis/hasil_periksa/insertdata.php" method="POST">
 
 
                             <div class="mb-3">
@@ -225,7 +225,7 @@ if (!empty($_SESSION["id"])) {
 
                     <div class="modal-body">
 
-                        <form action="../rekammedis/updatedata.php" method="POST">
+                        <form action="../rekammedis/hasil_periksa/updatedata.php" method="POST">
 
                             <input type="hidden" name="update_id" id="update_id">
 
@@ -338,7 +338,7 @@ if (!empty($_SESSION["id"])) {
 
                     <div class="modal-body">
 
-                        <form action="../rekammedis/deletedata.php" method="POST">
+                        <form action="../rekammedis/hasil_periksa/deletedata.php" method="POST">
 
                             <input name="delete_id" id="delete_id">
 
