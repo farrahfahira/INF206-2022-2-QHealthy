@@ -290,7 +290,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/updatedata.php" method="POST">
 
-                            <input type="hidden" name="update_id" id="update_id">
+                            <input name="update_id2" id="update_id2">
 
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
@@ -317,7 +317,7 @@ if (!empty($_SESSION["id"])) {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" name="updatedata" class="btn btn-success">Update Data</button>
+                                <button type="submit" name="updatedata2" class="btn btn-success">Update Data</button>
                             </div>
                         </form>
                     </div>
@@ -340,7 +340,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/deletedata.php" method="POST">
 
-                            <input type="hidden" name="delete_id" id="delete_id">
+                            <input name="delete_id" id="delete_id">
 
                             <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
 
@@ -356,7 +356,7 @@ if (!empty($_SESSION["id"])) {
         </div>
         <!-- End Modal Pop Up Delete Data Hasil Pemeriksaan -->
 
-        <!-- Modal Pop Up Delete Data Hasil Laboratorium-->
+        <!-- Modal Pop Up Delete Data Hasil Lab-->
         <div class="modal fade" id="deletemodal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -369,21 +369,13 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/deletedata.php" method="POST">
 
-                            <?php
-
-                            $id = $_GET['id'];
-                            $hasil_lab = mysqli_query($conn, "SELECT * FROM hasil_lab WHERE No_RM = '$id'");
-                            while ($row = mysqli_fetch_array($hasil_lab)) {
-                                $id_rm = $row['id_rm'];
-                            }
-
-                            ?>
+                            <input name="delete_id2" id="delete_id2">
 
                             <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" name="deletedata" class="btn btn-danger">Delete</button>
+                                <button type="submit" name="deletedata2" class="btn btn-danger">Delete</button>
                             </div>
                         </form>
                     </div>
@@ -391,7 +383,7 @@ if (!empty($_SESSION["id"])) {
                 </div>
             </div>
         </div>
-        <!-- End Modal Pop Up Delete Data -->
+        <!-- End Modal Pop Up Delete Data Hasil Lab -->
 
         <!-- Modal Pop Up View Data -->
         <div class="modal fade" id="viewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -692,7 +684,7 @@ if (!empty($_SESSION["id"])) {
                                                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
                                             </button>
-                                            <button type="button" class="btn btn-success editbtn_lab">
+                                            <button type="button" class="btn btn-success editbtn2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
@@ -713,7 +705,15 @@ if (!empty($_SESSION["id"])) {
 
                             <script>
                                 $(document).ready(function() {
-                                    $('#tabel_hasil_lab').DataTable();
+                                    $('#tabel_hasil_lab').DataTable({
+                                        columnDefs: [{
+                                            target: 0,
+                                            visible: false,
+                                            searchable: false,
+                                        }, ],
+
+
+                                    });
                                 });
                             </script>
                         </div>
@@ -836,7 +836,7 @@ if (!empty($_SESSION["id"])) {
 
                 console.log(data);
 
-                $('#delete_id').val(data[0]);
+                $('#delete_id2').val(data[0]);
 
             });
         });
@@ -844,7 +844,7 @@ if (!empty($_SESSION["id"])) {
 
     <script>
         $(document).ready(function() {
-            $('.editbtn_lab').on('click', function() {
+            $('.editbtn2').on('click', function() {
                 $('#editmodal2').modal('show');
 
                 $tr = $(this).closest('tr');
@@ -855,7 +855,7 @@ if (!empty($_SESSION["id"])) {
 
                 console.log(data);
 
-                $('#update_id').val(data[0]);
+                $('#update_id2').val(data[0]);
                 $('#Tgl_Pemeriksaan').val(data[1]);
                 $('#Jenis_Lab').val(data[2]);
                 $('#Nama_Laboran').val(data[3]);
