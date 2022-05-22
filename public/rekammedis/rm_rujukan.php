@@ -290,6 +290,7 @@ if (!empty($_SESSION["id"])) {
 
                         <form action="../rekammedis/hasil_lab/updatedata.php" method="POST">
 
+                            <input type="hidden" name="update_id" id="update_id">
 
                             <div class="mb-3">
                                 <label for="" class="tanggal-rawat">Tanggal Pemeriksaan</label>
@@ -661,6 +662,7 @@ if (!empty($_SESSION["id"])) {
                                         <th colspan="5">Hasil Pemeriksaan Laboratorium</th>
                                     </tr>
                                     <tr>
+                                        <th>id_rm</th>
                                         <th>Tgl Pemeriksaan</th>
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
@@ -676,6 +678,7 @@ if (!empty($_SESSION["id"])) {
                                     while ($row = mysqli_fetch_array($hasil_lab)) :
                                         echo
                                         "<tr>
+                                        <td>" . $row['id_rm'] . "</td>
                                         <td>" . $row['Tgl_Pemeriksaan'] . "</td>
                                         <td>" . $row['Jenis_Lab'] . "</td>
                                         <td>" . $row['Nama_Laboran'] . "</td>
@@ -852,10 +855,11 @@ if (!empty($_SESSION["id"])) {
 
                 console.log(data);
 
-                $('#Tgl_Pemeriksaan').val(data[0]);
-                $('#Jenis_Lab').val(data[1]);
-                $('#Nama_Laboran').val(data[2]);
-                $('#Hasil_Lab').val(data[3]);
+                $('#update_id').val(data[0]);
+                $('#Tgl_Pemeriksaan').val(data[1]);
+                $('#Jenis_Lab').val(data[2]);
+                $('#Nama_Laboran').val(data[3]);
+                $('#Hasil_Lab').val(data[4]);
 
             });
         });
