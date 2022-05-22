@@ -45,8 +45,6 @@ if (!empty($_SESSION["id"])) {
         </div>
 
         <div class="search">
-            <i class="bx bx-search"></i>
-            <input type="text" class="hide" placeholder="Quick Search ..." />
         </div>
 
         <div class="sidebar-links">
@@ -355,7 +353,7 @@ if (!empty($_SESSION["id"])) {
             <div class="card-body">
 
                 <div class="tab-content" id="myTabContent">
-                    
+
                     <!-- hasil Pemeriksaan -->
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
@@ -527,7 +525,7 @@ if (!empty($_SESSION["id"])) {
                                 Add Data
                             </button>
                         </div>
-                        
+
                         <!-- tabel hasil lab-->
                         <div class="container" style="margin-left: 10px;">
                             <table id="tabel_hasil_lab" class="ui celled table" style="width:100%; text-align: center;">

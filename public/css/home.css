@@ -131,7 +131,6 @@ nav:hover .shrink-btn,
 
 .search {
   min-height: 2.7rem;
-  background-color: var(--main-color-light);
   margin: 2rem 0.5rem 1.7rem;
   display: grid;
   grid-template-columns: 2.7rem 1fr;
