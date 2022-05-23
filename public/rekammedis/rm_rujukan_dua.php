@@ -452,7 +452,7 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Rawat</th>
+                                        <th>Tanggal Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
