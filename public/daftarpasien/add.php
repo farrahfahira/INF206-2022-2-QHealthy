@@ -22,6 +22,7 @@ if (!empty($_SESSION["id"])) {
         mysqli_query($conn, $query);
         echo
         "<script> alert('Data Ditambahkan!'); </script>";
+        header("Location: home.php");
     }
 } else {
     header("Location: ../login.php");
@@ -60,10 +61,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <span class="shrink-btn">
-                <i class="bx bx-chevron-left"></i>
-            </span>
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -72,8 +70,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <div class="active-tab"></div>
-                <li class="tooltip-element">
+                <li class="active-tab">
                     <a href="home.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>

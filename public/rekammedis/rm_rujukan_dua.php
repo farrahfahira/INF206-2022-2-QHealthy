@@ -40,7 +40,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -49,7 +49,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <li class="tooltip-element">
+                <li class="opsi_daftarpasien">
                     <a href="../daftarpasien/home_dua.php" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -58,10 +58,9 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-
-                <li class="navbar-active-tab">
+                <li class="active-tab">
                     <a href="../rekammedis/rm_dua.php" class="active" data-active="1">
-                        <div class="icon-navbar">
+                        <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
                         </div>
@@ -103,8 +102,10 @@ if (!empty($_SESSION["id"])) {
 
     <main>
         <h1>Rekam Medis</h1>
-        </br>
+
         <hr>
+
+        </br>
 
         <!-- Modal Pop Up Insert Data Hasil Pemeriksaan-->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -442,6 +443,8 @@ if (!empty($_SESSION["id"])) {
                                 Add Data
                             </button>
                         </div>
+
+                        </br>
 
                         <!-- tabel hasil pemeriksaan -->
                         <div class="container" style="margin-left: 10px;">
