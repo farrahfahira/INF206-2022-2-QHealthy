@@ -41,10 +41,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <span class="shrink-btn">
-                <i class="bx bx-chevron-left"></i>
-            </span>
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -53,9 +50,8 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <div class="active-tab"></div>
-                <li class="tooltip-element">
-                    <a href="home_dua.php" class="active" data-active="0">
+                <li class="active-tab">
+                    <a href="home.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -64,7 +60,7 @@ if (!empty($_SESSION["id"])) {
                     </a>
                 </li>
                 <li class="tooltip-element">
-                    <a href="../rekammedis/rm_dua.php" data-active="1">
+                    <a href="../rekammedis/rm.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
@@ -106,6 +102,9 @@ if (!empty($_SESSION["id"])) {
     <main>
         <h1>Detail Pasien</h1>
         <hr>
+
+        </br>
+
         <div class="data_pasien">
             <?php
 

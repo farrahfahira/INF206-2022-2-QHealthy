@@ -41,7 +41,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -101,8 +101,10 @@ if (!empty($_SESSION["id"])) {
 
     <main>
         <h1>Rekam Medis</h1>
-        </br>
+
         <hr>
+
+        </br>
 
         <table id="tabel_daftar_pasien" class="ui celled table" style="width:100%">
             <thead>

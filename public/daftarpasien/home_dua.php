@@ -41,8 +41,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -51,8 +50,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <div class="active-tab"></div>
-                <li class="tooltip-element">
+                <li class="active-tab">
                     <a href="home_dua.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -103,8 +101,10 @@ if (!empty($_SESSION["id"])) {
 
     <main>
         <h1>Daftar Pasien</h1>
-        </br>
+
         <hr>
+
+        </br>
 
         <table id="tabel_daftar_pasien" class="ui celled table" style="width:100%">
             <thead>
@@ -124,7 +124,7 @@ if (!empty($_SESSION["id"])) {
                     echo
                     "<tr>
                     <td>" . $no++ . "</td>
-                    <td><a href='daftar_pasien_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
+                    <td><a href='view_datapasien_dua.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
                     <td>" . $row['Nama'] . "</td>
                     <td>" . $row['Usia'] . "</td>
                     <td>" . $row['Jenis_Kelamin'] . "</td>"; ?>

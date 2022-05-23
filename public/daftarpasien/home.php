@@ -42,7 +42,7 @@ if (!empty($_SESSION["id"])) {
     <nav>
         <div class="sidebar-top">
 
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -51,8 +51,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <div class="active-tab"></div>
-                <li class="tooltip-element">
+                <li class="active-tab">
                     <a href="home.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -103,15 +102,16 @@ if (!empty($_SESSION["id"])) {
 
     <main>
         <h1>Daftar Pasien</h1>
-        </br>
+
         <hr>
 
+        </br>
 
-        <div class="container">
+
+        <div class="add_button">
             <button type="button" class="btn button">
                 <a href="add.php" class="icon">
-                    <i class="bx bx-notepad btn-name"> Add Data</i>
-                    <i class="bx bxs-notepad"></i>
+                    <span class="btn-name">Add Data</span>
                 </a>
             </button>
         </div>
@@ -136,7 +136,7 @@ if (!empty($_SESSION["id"])) {
                     echo
                     "<tr>
                     <td>" . $no++ . "</td>
-                    <td><a href='daftar_pasien_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
+                    <td><a href='view_datapasien.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
                     <td>" . $row['Nama'] . "</td>
                     <td>" . $row['Usia'] . "</td>
                     <td>" . $row['Jenis_Kelamin'] . "</td>"; ?>
