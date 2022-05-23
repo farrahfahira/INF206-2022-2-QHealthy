@@ -106,11 +106,22 @@ if (!empty($_SESSION["id"])) {
         </br>
         <hr>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <!-- Modal Pop Up Insert Data hasil pemeriksaan -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+=======
+>>>>>>> Stashed changes
 
 
 
         <!-- Modal Pop Up Edit Data Hasil Laboratorium-->
         <div class="modal fade" id="editmodal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<<<<<<< Updated upstream
+=======
+>>>>>>> 2008107010011
+>>>>>>> Stashed changes
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -405,7 +416,7 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Rawat</th>
+                                        <th>Taggal Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
@@ -524,7 +535,7 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Pemeriksaan</th>
+                                        <th>Taggal Pemeriksaan</th>
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
                                         <th>Hasil Laboratorium</th>
@@ -587,7 +598,7 @@ if (!empty($_SESSION["id"])) {
                             </script>
                         </div>
 
-                        <!-- end tabel hasil laboratorium -->
+                        <!-- end hasil laboratorium -->
 
                     </div>
                 </div>
