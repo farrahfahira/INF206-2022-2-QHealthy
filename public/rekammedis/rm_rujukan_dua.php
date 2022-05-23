@@ -153,7 +153,7 @@ if (!empty($_SESSION["id"])) {
                                 <label>Obat</label>
                                 <textarea class="form-control" name="Obat" rows="3"></textarea>
                             </div>
-                            <button type="reset" class="btn btn-danger">Hapus</button>
+                            <button type="reset" class="btn btn-danger">Clear</button>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
