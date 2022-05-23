@@ -245,7 +245,7 @@ if (!empty($_SESSION["id"])) {
 
                             <input name="delete_id" id="delete_id">
 
-                            <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
+                            <h4>Apakah Anda yakin ingin menghapus data ?</h4>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
