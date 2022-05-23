@@ -1,30 +1,32 @@
 <?php
+
 require '../config.php';
-if (empty($_SESSION["id"])) {
-    header("Location: ../index.php");
-}
 if (!empty($_SESSION["id"])) {
     $id = $_SESSION["id"];
     $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
-}
-if (isset($_POST["submit"])) {
-    $norm = $_POST["NoRM"];
-    $nama = $_POST["Nama"];
-    $usia = $_POST["Usia"];
-    $jeniskelamin = $_POST["JenisKelamin"];
-    $goldar = $_POST["GolDarah"];
-    $tb = $_POST["TB"];
-    $bb = $_POST["BB"];
-    $pekerjaan = $_POST["Pekerjaan"];
-    $alamat = $_POST["Alamat"];
-    $notelp = $_POST["NoTelp"];
 
-    $query = "INSERT INTO daftar_pasien VALUES('0','$norm','$nama','$usia','$jeniskelamin', '$goldar', '$tb', '$bb', '$pekerjaan','$alamat','$notelp')";
-    mysqli_query($conn, $query);
-    echo
-    "<script> alert('Data Ditambahkan!'); </script>";
+    if (isset($_POST["submit"])) {
+        $norm = $_POST["NoRM"];
+        $nama = $_POST["Nama"];
+        $usia = $_POST["Usia"];
+        $jeniskelamin = $_POST["JenisKelamin"];
+        $goldar = $_POST["GolDarah"];
+        $tb = $_POST["TB"];
+        $bb = $_POST["BB"];
+        $pekerjaan = $_POST["Pekerjaan"];
+        $alamat = $_POST["Alamat"];
+        $notelp = $_POST["NoTelp"];
+
+        $query = "INSERT INTO daftar_pasien VALUES('0','$norm','$nama','$usia','$jeniskelamin', '$goldar', '$tb', '$bb', '$pekerjaan','$alamat','$notelp')";
+        mysqli_query($conn, $query);
+        echo
+        "<script> alert('Data Ditambahkan!'); </script>";
+    }
+} else {
+    header("Location: ../login.php");
 }
+
 ?>
 
 <!DOCTYPE html>

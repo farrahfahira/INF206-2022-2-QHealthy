@@ -55,7 +55,7 @@ if (!empty($_SESSION["id"])) {
             <ul>
                 <div class="active-tab"></div>
                 <li class="tooltip-element">
-                    <a href="home.php" class="active" data-active="0">
+                    <a href="home_dua.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -64,7 +64,7 @@ if (!empty($_SESSION["id"])) {
                     </a>
                 </li>
                 <li class="tooltip-element">
-                    <a href="../rekammedis/rm.php" data-active="1">
+                    <a href="../rekammedis/rm_dua.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
