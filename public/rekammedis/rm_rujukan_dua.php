@@ -245,7 +245,7 @@ if (!empty($_SESSION["id"])) {
 
                             <input name="delete_id" id="delete_id">
 
-                            <h4>Apakah Anda yakin ingin menghapus data ini?</h4>
+                            <h4>Apakah Anda yakin ingin menghapus data ini ?</h4>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -452,14 +452,14 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Rawat</th>
+                                        <th>Tanggal Rawat</th>
                                         <th>Poliklinik</th>
                                         <th>Nama Dokter</th>
                                         <th>Periksa</th>
                                         <th>Diagnosis</th>
                                         <th>Tindakan</th>
                                         <th>Obat</th>
-                                        <th style="width:120px;">Action</p>
+                                        <th style="width:120px;">Aksi</p>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -577,11 +577,11 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Pemeriksaan</th>
+                                        <th>Tanggal Pemeriksaan</th>
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
                                         <th>Hasil Laboratorium</th>
-                                        <th style="width:200px;">Action</p>
+                                        <th style="width:200px;">Aksi</p>
                                     </tr>
                                 </thead>
                                 <tbody>
