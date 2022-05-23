@@ -1,22 +1,33 @@
 <?php
 require '../config.php';
-if (!empty($_SESSION["id"])) {
-    $id = $_SESSION["id"];
-    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
-    $row = mysqli_fetch_assoc($result);
-} else {
-    header("Location: ../login.php");
+if (empty($_SESSION["id"])) {
+    header("Location: ../index.php");
 }
+
+if (!isset($_GET['id'])) {
+    header('Location: home.php');
+}
+
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM daftar_pasien WHERE NO_RM = '$id'";
+$query = mysqli_query($conn, $sql);
+$pasien = mysqli_fetch_assoc($query);
+
+if (mysqli_num_rows($query) < 1) {
+    die("data tidak ditemukan");
+}
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QHealthy | Home</title>
+    <title>QHealthy | Update Pasien</title>
 
 
     <!-- Javascript library files -->
@@ -34,8 +45,7 @@ if (!empty($_SESSION["id"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.semanticui.min.css">
 
-    <link rel="stylesheet" href="../css/home.css" />
-
+    <link rel="stylesheet" href="../css/form.css" />
 </head>
 
 <body>
@@ -103,57 +113,53 @@ if (!empty($_SESSION["id"])) {
         </div>
     </nav>
 
+    <!-- End Of Sidebar -->
     <main>
-        <h1>Detail Pasien</h1>
+        <h1>Daftar Pasien</h1>
+        </br>
         <hr>
-        <div class="data_pasien">
-            <?php
+        <h3>Update Data</h3>
+        <form class="" action="proses-edit.php" method="POST" autocomplete="off">
+            <input type="hidden" class="field" name="NoRM" placeholder="e.g. 15-01-224" id="NoRM" required value="<?php echo $pasien['No_RM'] ?>"> <br>
+            <label for="Nama">Nama </label>
+            <input type="text" class="field" name="Nama" placeholder="e.g. Syarifah Fathimah Azzahra" id="Nama" required value="<?php echo $pasien['Nama'] ?>"> <br>
+            <label for="Usia">Usia </label>
+            <input type="number" class="field" name="Usia" id="Usia" min="1" max="100" required value="<?php echo $pasien['Usia'] ?>"> <br>
 
-            $id = $_GET['id'];
-            $daftar_pasien = mysqli_query($conn, "SELECT * FROM daftar_pasien WHERE No_RM = '$id'");
-            while ($row = mysqli_fetch_array($daftar_pasien)) {
-                $no_rm = $row['No_RM'];
-                $nama = $row['Nama'];
-                $usia = $row['Usia'];
-                $jk = $row['Jenis_Kelamin'];
-                $goldar = $row['Gol_Darah'];
-                $tb = $row['TB'];
-                $bb = $row['BB'];
-                $pekerjaan = $row['Pekerjaan'];
-                $alamat = $row['Alamat'];
-                $no_telp = $row['No_Telp'];
-            }
+            <!-- Select -->
+            <label for="JenisKelamin">Jenis Kelamin</label>
+            <?php $jk = $pasien['Jenis_Kelamin']; ?>
+            <select id="JenisKelamin" name="JenisKelamin">
+                <option value="Laki-Laki" <?php echo ($jk == 'Laki-Laki') ? "selected" : "" ?>>Laki-Laki</option>
+                <option value="Perempuan" <?php echo ($jk == 'Perempuan') ? "selected" : "" ?>>Perempuan</option>
+            </select>
+            <!-- End Select -->
 
-            echo "No RM : " . $no_rm;
-            echo "<br />";
-            echo "Nama : " . $nama;
-            echo "<br />";
-            echo "Usia : " . $usia;
-            echo "<br />";
-            echo "Jenis Kelamin : " . $jk;
-            echo "<br />";
-            echo "Gol. Darah : " . $goldar;
-            echo "<br />";
-            echo "TB / BB : " . $tb;
-            echo " cm / " . $bb;
-            echo " kg";
-            echo "<br />";
-            echo "Pekerjaan : " . $pekerjaan;
-            echo "<br />";
-            echo "Alamat : " . $alamat;
-            echo "<br />";
-            echo "No. Telp : " . $no_telp;
+            <!-- Select -->
+            <label for="GolDarah">Golongan Darah</label>
+            <?php $goldar = $pasien['Gol_Darah']; ?>
+            <select id="GolDarah" name="GolDarah">
+                <option value="A" <?php echo ($goldar == 'A') ? "selected" : "" ?>>A</option>
+                <option value="B" <?php echo ($goldar == 'B') ? "selected" : "" ?>>B</option>
+                <option value="AB" <?php echo ($goldar == 'AB') ? "selected" : "" ?>>AB</option>
+                <option value="O" <?php echo ($goldar == 'O') ? "selected" : "" ?>>O</option>
+            </select>
+            <!-- End Select -->
 
-            ?>
-        </div>
+            <label for="TB">Tinggi Badan </label>
+            <input type="number" class="field" name="TB" id="TB" min="1" max="500" required value="<?php echo $pasien['TB'] ?>"> <br>
+            <label for="BB">Berat Badan </label>
+            <input type="number" class="field" name="BB" id="BB" min="1" max="500" required value="<?php echo $pasien['BB'] ?>"> <br>
 
-
-
-
-
-
-
-
+            <label for="Pekerjaan">Pekerjaan </label>
+            <input type="text" class="field" name="Pekerjaan" placeholder="e.g. Buruh" id="Perkerjaan" required value="<?php echo $pasien['Pekerjaan'] ?>"> <br>
+            <label for="Alamat">Alamat </label>
+            <input type="text" class="field" name="Alamat" placeholder="e.g. jl. Fulannah No.22, Perumahan Baroe, Banda Aceh" id="Alamat" required value="<?php echo $pasien['Alamat'] ?>"> <br>
+            <label for="NoTelp">No. Telp </label>
+            <input type="text" class="field" name="NoTelp" placeholder="e.g. 08980017xxxx" id="NoTelp" required value="<?php echo $pasien['No_Telp'] ?>"> <br>
+            <button type="submit" name="submit">Update</button>
+        </form>
+        </br>
     </main>
 
     <script src="../js/sidebar.js"></script>
