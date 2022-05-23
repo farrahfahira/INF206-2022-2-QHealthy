@@ -459,7 +459,7 @@ if (!empty($_SESSION["id"])) {
                                         <th>Diagnosis</th>
                                         <th>Tindakan</th>
                                         <th>Obat</th>
-                                        <th style="width:120px;">Action</p>
+                                        <th style="width:120px;">Aksi</p>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -581,7 +581,7 @@ if (!empty($_SESSION["id"])) {
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
                                         <th>Hasil Laboratorium</th>
-                                        <th style="width:200px;">Action</p>
+                                        <th style="width:200px;">Aksi</p>
                                     </tr>
                                 </thead>
                                 <tbody>
