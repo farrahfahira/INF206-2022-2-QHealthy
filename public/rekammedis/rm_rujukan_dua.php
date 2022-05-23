@@ -577,7 +577,7 @@ if (!empty($_SESSION["id"])) {
                                     </tr>
                                     <tr>
                                         <th>id_rm</th>
-                                        <th>Tgl Pemeriksaan</th>
+                                        <th>Taggal Pemeriksaan</th>
                                         <th>Jenis Laboratorium</th>
                                         <th>Nama Laboran</th>
                                         <th>Hasil Laboratorium</th>
