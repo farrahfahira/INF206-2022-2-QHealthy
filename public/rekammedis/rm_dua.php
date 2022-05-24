@@ -51,7 +51,7 @@ if (!empty($_SESSION["id"])) {
         <div class="sidebar-links">
             <ul>
                 <li class="tooltip-element">
-                    <a href="../daftarpasien/home.php" data-active="0">
+                    <a href="../daftarpasien/home_dua.php" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -60,7 +60,7 @@ if (!empty($_SESSION["id"])) {
                     </a>
                 </li>
                 <li class="active-tab">
-                    <a href="rm.php" class="active" data-active="1">
+                    <a href="rm_dua.php" class="active" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
@@ -103,7 +103,6 @@ if (!empty($_SESSION["id"])) {
         <h1>Rekam Medis</h1>
 
         <hr>
-
         </br>
 
         <table id="tabel_daftar_pasien" class="ui celled table" style="width:100%">
@@ -124,7 +123,7 @@ if (!empty($_SESSION["id"])) {
                     echo
                     "<tr>
                     <td>" . $no++ . "</td>
-                    <td> <a href='rm_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
+                    <td> <a href='rm_rujukan_dua.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
                     <td>" . $row['Nama'] . "</td>
                     <td>" . $row['Usia'] . "</td>
                     <td>" . $row['Jenis_Kelamin'] . "</td>"; ?>

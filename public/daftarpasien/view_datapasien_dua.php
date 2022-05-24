@@ -50,8 +50,8 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <li class="tooltip-element">
-                    <a href="../daftarpasien/home.php" data-active="0">
+                <li class="active-tab">
+                    <a href="home_dua.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
                             <i class="bx bxs-notepad"></i>
@@ -59,8 +59,8 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-                <li class="active-tab">
-                    <a href="rm.php" class="active" data-active="1">
+                <li class="tooltip-element">
+                    <a href="../rekammedis/rm_dua.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
                             <i class="bx bxs-folder"></i>
@@ -100,46 +100,59 @@ if (!empty($_SESSION["id"])) {
     </nav>
 
     <main>
-        <h1>Rekam Medis</h1>
-
+        <h1>Detail Pasien</h1>
         <hr>
 
         </br>
 
-        <table id="tabel_daftar_pasien" class="ui celled table" style="width:100%">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>No. RM</th>
-                    <th>Nama</th>
-                    <th>Usia</th>
-                    <th>Jenis Kelamin</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $daftar_pasien = mysqli_query($conn, "select * from daftar_pasien order by no desc");
-                while ($row = mysqli_fetch_array($daftar_pasien)) :
-                    echo
-                    "<tr>
-                    <td>" . $no++ . "</td>
-                    <td> <a href='rm_rujukan.php?id=" . $row['No_RM'] . "'>" . $row['No_RM'] . "</td>
-                    <td>" . $row['Nama'] . "</td>
-                    <td>" . $row['Usia'] . "</td>
-                    <td>" . $row['Jenis_Kelamin'] . "</td>"; ?>
-                    </tr>
-                <?php endwhile; ?>
+        <div class="data_pasien">
+            <?php
+
+            $id = $_GET['id'];
+            $daftar_pasien = mysqli_query($conn, "SELECT * FROM daftar_pasien WHERE No_RM = '$id'");
+            while ($row = mysqli_fetch_array($daftar_pasien)) {
+                $no_rm = $row['No_RM'];
+                $nama = $row['Nama'];
+                $usia = $row['Usia'];
+                $jk = $row['Jenis_Kelamin'];
+                $goldar = $row['Gol_Darah'];
+                $tb = $row['TB'];
+                $bb = $row['BB'];
+                $pekerjaan = $row['Pekerjaan'];
+                $alamat = $row['Alamat'];
+                $no_telp = $row['No_Telp'];
+            }
+
+            echo "No RM : " . $no_rm;
+            echo "<br />";
+            echo "Nama : " . $nama;
+            echo "<br />";
+            echo "Usia : " . $usia;
+            echo "<br />";
+            echo "Jenis Kelamin : " . $jk;
+            echo "<br />";
+            echo "Gol. Darah : " . $goldar;
+            echo "<br />";
+            echo "TB / BB : " . $tb;
+            echo " cm / " . $bb;
+            echo " kg";
+            echo "<br />";
+            echo "Pekerjaan : " . $pekerjaan;
+            echo "<br />";
+            echo "Alamat : " . $alamat;
+            echo "<br />";
+            echo "No. Telp : " . $no_telp;
+
+            ?>
+        </div>
 
 
-            </tbody>
-        </table>
 
-        <script>
-            $(document).ready(function() {
-                $('#tabel_daftar_pasien').DataTable();
-            });
-        </script>
+
+
+
+
+
     </main>
 
     <script src="../js/sidebar.js"></script>
