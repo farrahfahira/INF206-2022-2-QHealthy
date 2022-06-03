@@ -14,6 +14,8 @@
 1. Clone Repository ini
 2. Letakkan pada folder xampp/htdocs/
 3. Buatlah sebuah database dengan nama "qhealthy2"
-4. Import file qhealthy.sql pada database yang telah dibuat
-5. Jalankan xampp dan start untuk Apache dan MySQL
-6. Jalankan website melalui browser dengan membuka "localhost/INF206-2022-2-QHealthy/public"
+4. Download file qhealthy2.sql pada folder public/database
+5. Import file qhealthy2.sql pada database qhealthy2 yang telah dibuat
+6. Jalankan xampp dan start untuk Apache dan MySQL
+7. Jalankan website melalui browser dengan membuka "localhost/INF206-2022-2-QHealthy/public"
+8. Untuk login, maka harus mendaftarkan akun melalui phpmyadmin pada table tb_user. jika ingin mendaftar sebagai dokter maka isi 'dokter' (tanpa tanda petik dan perhatikan huruf kecil semua) atau 'perekam medik' (perhatikan tanda petik dan huruf kecil semua)
