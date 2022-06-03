@@ -41,10 +41,7 @@ if (!empty($_SESSION["id"])) {
 <body>
     <nav>
         <div class="sidebar-top">
-            <span class="shrink-btn">
-                <i class="bx bx-chevron-left"></i>
-            </span>
-            <img src="../assets/logo.png" class="logo" alt="" />
+            <img src="../assets/logo1.png" class="logo" alt="" />
             <h3 class="hide">QHealthy</h3>
         </div>
 
@@ -53,8 +50,7 @@ if (!empty($_SESSION["id"])) {
 
         <div class="sidebar-links">
             <ul>
-                <div class="active-tab"></div>
-                <li class="tooltip-element" data-tooltip="0">
+                <li class="active-tab">
                     <a href="home.php" class="active" data-active="0">
                         <div class="icon">
                             <i class="bx bx-notepad"></i>
@@ -63,7 +59,7 @@ if (!empty($_SESSION["id"])) {
                         <span class="link hide">Daftar Pasien</span>
                     </a>
                 </li>
-                <li class="tooltip-element" data-tooltip="1">
+                <li class="tooltip-element">
                     <a href="../rekammedis/rm.php" data-active="1">
                         <div class="icon">
                             <i class="bx bx-folder"></i>
@@ -84,11 +80,11 @@ if (!empty($_SESSION["id"])) {
             <a href="#" class="account tooltip-element" data-tooltip="0">
                 <i class="bx bx-user"></i>
             </a>
-            <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-user tooltip-element">
                 <div class="admin-profile hide">
                     <img src="../assets/foto1.png" alt="" />
                     <div class="admin-info">
-                        <h3>Admin</h3>
+                        <?php echo '<h3>' . $row['user'] . '</h3>'; ?>
                         <?php echo '<h5>' . $row['name'] . '</h5>'; ?>
                     </div>
                 </div>
@@ -106,6 +102,9 @@ if (!empty($_SESSION["id"])) {
     <main>
         <h1>Detail Pasien</h1>
         <hr>
+
+        </br>
+
         <div class="data_pasien">
             <?php
 
@@ -115,13 +114,13 @@ if (!empty($_SESSION["id"])) {
                 $no_rm = $row['No_RM'];
                 $nama = $row['Nama'];
                 $usia = $row['Usia'];
-                $jk = $row['Jenis Kelamin'];
-                $goldar = $row['Gol Darah'];
+                $jk = $row['Jenis_Kelamin'];
+                $goldar = $row['Gol_Darah'];
                 $tb = $row['TB'];
                 $bb = $row['BB'];
                 $pekerjaan = $row['Pekerjaan'];
                 $alamat = $row['Alamat'];
-                $no_telp = $row['No Telp'];
+                $no_telp = $row['No_Telp'];
             }
 
             echo "No RM : " . $no_rm;

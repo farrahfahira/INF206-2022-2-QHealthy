@@ -1,31 +1,25 @@
 <?php
-
 require '../config.php';
-if (!empty($_SESSION["id"])) {
+if (empty($_SESSION["id"])) {
+    header("Location: ../index.php");
+} else {
     $id = $_SESSION["id"];
     $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
+}
 
-    if (isset($_POST["submit"])) {
-        $norm = $_POST["NoRM"];
-        $nama = $_POST["Nama"];
-        $usia = $_POST["Usia"];
-        $jeniskelamin = $_POST["JenisKelamin"];
-        $goldar = $_POST["GolDarah"];
-        $tb = $_POST["TB"];
-        $bb = $_POST["BB"];
-        $pekerjaan = $_POST["Pekerjaan"];
-        $alamat = $_POST["Alamat"];
-        $notelp = $_POST["NoTelp"];
+if (!isset($_GET['id'])) {
+    header('Location: home.php');
+}
 
-        $query = "INSERT INTO daftar_pasien VALUES('0','$norm','$nama','$usia','$jeniskelamin', '$goldar', '$tb', '$bb', '$pekerjaan','$alamat','$notelp')";
-        mysqli_query($conn, $query);
-        echo
-        "<script> alert('Data Ditambahkan!'); </script>";
-        header("Location: home.php");
-    }
-} else {
-    header("Location: ../login.php");
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM daftar_pasien WHERE NO_RM = '$id'";
+$query = mysqli_query($conn, $sql);
+$pasien = mysqli_fetch_assoc($query);
+
+if (mysqli_num_rows($query) < 1) {
+    die("data tidak ditemukan");
 }
 
 ?>
@@ -37,7 +31,7 @@ if (!empty($_SESSION["id"])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QHealthy | Daftar Pasien</title>
+    <title>QHealthy | Update Pasien</title>
 
 
     <!-- Javascript library files -->
@@ -124,45 +118,46 @@ if (!empty($_SESSION["id"])) {
         <h1>Daftar Pasien</h1>
         </br>
         <hr>
-        <h3>Tambah Data</h3>
-        <form class="" action="" method="post" autocomplete="off">
-            <label for="NoRM">No RM </label>
-            <input type="text" class="field" name="NoRM" placeholder="e.g. 15-01-224" id="NoRM" required value=""> <br>
+        <h3>Update Data</h3>
+        <form class="" action="proses-edit.php" method="POST" autocomplete="off">
+            <input type="hidden" class="field" name="NoRM" placeholder="e.g. 15-01-224" id="NoRM" required value="<?php echo $pasien['No_RM'] ?>"> <br>
             <label for="Nama">Nama </label>
-            <input type="text" class="field" name="Nama" placeholder="e.g. Syarifah Fathimah Azzahra" id="Nama" required value=""> <br>
+            <input type="text" class="field" name="Nama" placeholder="e.g. Syarifah Fathimah Azzahra" id="Nama" required value="<?php echo $pasien['Nama'] ?>"> <br>
             <label for="Usia">Usia </label>
-            <input type="number" class="field" name="Usia" id="Usia" min="1" max="100" required value=""> <br>
+            <input type="number" class="field" name="Usia" id="Usia" min="1" max="100" required value="<?php echo $pasien['Usia'] ?>"> <br>
 
             <!-- Select -->
             <label for="JenisKelamin">Jenis Kelamin</label>
+            <?php $jk = $pasien['Jenis_Kelamin']; ?>
             <select id="JenisKelamin" name="JenisKelamin">
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option>
+                <option value="Laki-Laki" <?php echo ($jk == 'Laki-Laki') ? "selected" : "" ?>>Laki-Laki</option>
+                <option value="Perempuan" <?php echo ($jk == 'Perempuan') ? "selected" : "" ?>>Perempuan</option>
             </select>
             <!-- End Select -->
 
             <!-- Select -->
             <label for="GolDarah">Golongan Darah</label>
+            <?php $goldar = $pasien['Gol_Darah']; ?>
             <select id="GolDarah" name="GolDarah">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="AB">AB</option>
-                <option value="O">O</option>
+                <option value="A" <?php echo ($goldar == 'A') ? "selected" : "" ?>>A</option>
+                <option value="B" <?php echo ($goldar == 'B') ? "selected" : "" ?>>B</option>
+                <option value="AB" <?php echo ($goldar == 'AB') ? "selected" : "" ?>>AB</option>
+                <option value="O" <?php echo ($goldar == 'O') ? "selected" : "" ?>>O</option>
             </select>
             <!-- End Select -->
 
             <label for="TB">Tinggi Badan </label>
-            <input type="number" class="field" name="TB" id="TB" min="1" max="500" required value=""> <br>
+            <input type="number" class="field" name="TB" id="TB" min="1" max="500" required value="<?php echo $pasien['TB'] ?>"> <br>
             <label for="BB">Berat Badan </label>
-            <input type="number" class="field" name="BB" id="BB" min="1" max="500" required value=""> <br>
+            <input type="number" class="field" name="BB" id="BB" min="1" max="500" required value="<?php echo $pasien['BB'] ?>"> <br>
 
             <label for="Pekerjaan">Pekerjaan </label>
-            <input type="text" class="field" name="Pekerjaan" placeholder="e.g. Buruh" id="Perkerjaan" required value=""> <br>
+            <input type="text" class="field" name="Pekerjaan" placeholder="e.g. Buruh" id="Perkerjaan" required value="<?php echo $pasien['Pekerjaan'] ?>"> <br>
             <label for="Alamat">Alamat </label>
-            <input type="text" class="field" name="Alamat" placeholder="e.g. jl. Fulannah No.22, Perumahan Baroe, Banda Aceh" id="Alamat" required value=""> <br>
+            <input type="text" class="field" name="Alamat" placeholder="e.g. jl. Fulannah No.22, Perumahan Baroe, Banda Aceh" id="Alamat" required value="<?php echo $pasien['Alamat'] ?>"> <br>
             <label for="NoTelp">No. Telp </label>
-            <input type="text" class="field" name="NoTelp" placeholder="e.g. 08980017xxxx" id="NoTelp" required value=""> <br>
-            <button type="submit" name="submit">Tambah</button>
+            <input type="text" class="field" name="NoTelp" placeholder="e.g. 08980017xxxx" id="NoTelp" required value="<?php echo $pasien['No_Telp'] ?>"> <br>
+            <button type="submit" name="submit">Update</button>
         </form>
         </br>
     </main>
